@@ -3,6 +3,7 @@ package abstractController;
 import dao.ComponentDAO;
 import model.Component;
 import org.springframework.beans.factory.annotation.Autowired;
+import service.ComponentService;
 
 import java.util.List;
 
@@ -12,18 +13,18 @@ import java.util.List;
 public class AbstractComponentController {
 
     @Autowired
-    private ComponentDAO componentDAO;
+    private ComponentService componentService;
 
     public List<Component> getAll(){
-        return componentDAO.getAll();
+        return componentService.getAll();
     }
 
     public boolean delete(int id){
-        return componentDAO.delete(id);
+        return componentService.delete(id);
     }
 
     public Component save(Component component){
-        return componentDAO.save(component);
+        return componentService.save(component);
     }
 
 }

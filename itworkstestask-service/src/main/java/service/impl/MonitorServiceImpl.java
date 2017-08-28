@@ -5,6 +5,7 @@ import model.Monitor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import service.MonitorService;
+import service.discount.Discount;
 
 import java.util.List;
 
@@ -17,7 +18,7 @@ public class MonitorServiceImpl implements MonitorService {
     private MonitorDAO monitorDAO;
 
     public List<Monitor> getAll() {
-        return monitorDAO.getAll();
+        return Discount.monitorsWithDiscount(monitorDAO.getAll());
     }
 
     public Monitor save(Monitor monitor) {

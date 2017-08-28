@@ -5,6 +5,7 @@ import model.Storagedevice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import service.StoragedeviceService;
+import service.discount.Discount;
 
 import java.util.List;
 
@@ -17,7 +18,7 @@ public class StoragedeviceServiceImpl implements StoragedeviceService {
     private StoragedeviceDAO storagedeviceDAO;
 
     public List<Storagedevice> getAll() {
-        return storagedeviceDAO.getAll();
+        return Discount.storagedevicesWithDiscount(storagedeviceDAO.getAll());
     }
 
     public Storagedevice save(Storagedevice storagedevice) {

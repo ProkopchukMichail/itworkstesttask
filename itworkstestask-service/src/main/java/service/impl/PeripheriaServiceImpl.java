@@ -5,6 +5,7 @@ import model.Peripheria;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import service.PeripheriaService;
+import service.discount.Discount;
 
 import java.util.List;
 
@@ -17,7 +18,7 @@ public class PeripheriaServiceImpl implements PeripheriaService {
     private PeripheralDAO peripheralDAO;
 
     public List<Peripheria> getAll() {
-        return peripheralDAO.getAll();
+        return Discount.peripheralsWithDiscount(peripheralDAO.getAll());
     }
 
     public Peripheria save(Peripheria peripheria) {
