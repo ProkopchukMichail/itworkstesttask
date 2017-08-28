@@ -24,7 +24,7 @@ public class Storagedevice extends BaseGood {
     @Column(name = "capacity")
     private Integer capacity;
 
-    public Storagedevice(Integer id, String name, Integer typeId, Integer quantity, String country, Integer cost, String brand, Integer capacity) {
+    public Storagedevice(Integer id, String name, Integer typeId, Integer quantity, String country, Double cost, String brand, Integer capacity) {
         super(id, name, typeId, quantity, country, cost);
         this.brand = brand;
         this.capacity = capacity;

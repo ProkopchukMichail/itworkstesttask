@@ -24,7 +24,7 @@ INSERT INTO input_devices(id, name, typeId, quantity, country, color, illuminati
 COMMIT;
 
 INSERT INTO components(id, name, typeId, quantity, country, brand, weight,cost) VALUES
-  (1,'component1',2,3,'china','intel',250,15),
+  (1,'component1',2,3,'china','intel',250,15.6),
   (2,'component2',2,7,'usa','amd',180,50),
   (3,'component3',2,30,'china','nvidia',150,35);
 COMMIT;

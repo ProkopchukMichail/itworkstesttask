@@ -17,9 +17,9 @@ public abstract class BaseGood extends Identification {
     @Column(name = "country")
     private String country;
     @Column(name = "cost")
-    private Integer cost;
+    private Double cost;
 
-    public BaseGood(Integer id, String name, Integer typeId, Integer quantity, String country, Integer cost) {
+    public BaseGood(Integer id, String name, Integer typeId, Integer quantity, String country, Double cost) {
         super(id);
         this.name = name;
         this.typeId = typeId;
@@ -63,11 +63,11 @@ public abstract class BaseGood extends Identification {
         this.country = country;
     }
 
-    public Integer getCost() {
+    public Double getCost() {
         return cost;
     }
 
-    public void setCost(Integer cost) {
+    public void setCost(Double cost) {
         this.cost = cost;
     }
 }

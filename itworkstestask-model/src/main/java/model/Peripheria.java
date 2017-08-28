@@ -24,7 +24,7 @@ public class Peripheria extends BaseGood {
     @Column(name = "voltage")
     private Integer voltage;
 
-    public Peripheria(Integer id, String name, Integer typeId, Integer quantity, String country, Integer cost, String brand, Integer voltage) {
+    public Peripheria(Integer id, String name, Integer typeId, Integer quantity, String country, Double cost, String brand, Integer voltage) {
         super(id, name, typeId, quantity, country, cost);
         this.brand = brand;
         this.voltage = voltage;

@@ -26,7 +26,7 @@ CREATE TABLE input_devices
   country VARCHAR(25),
   color VARCHAR(20) DEFAULT 'Black',
   illumination BOOLEAN DEFAULT FALSE,
-  cost INT(6),
+  cost FLOAT(6),
   CONSTRAINT FK_1 FOREIGN KEY (typeId) REFERENCES goodstypes(id)
 ) ENGINE = InnoDB;
 
@@ -39,7 +39,7 @@ CREATE TABLE components
   country VARCHAR(25),
   brand VARCHAR(50),
   weight INT(10),
-  cost INT(6),
+  cost FLOAT(6),
   CONSTRAINT FK_2 FOREIGN KEY (typeId) REFERENCES goodstypes(id)
 ) ENGINE = InnoDB;
 
@@ -52,7 +52,7 @@ CREATE TABLE storage_devices
   country VARCHAR(25),
   brand VARCHAR(50),
   capacity INT(6),
-  cost INT(6),
+  cost FLOAT(6),
   CONSTRAINT FK_3 FOREIGN KEY (typeId) REFERENCES goodstypes(id)
 ) ENGINE = InnoDB;
 
@@ -65,7 +65,7 @@ CREATE TABLE monitors
   country VARCHAR(25),
   brand VARCHAR(50),
   size FLOAT(6),
-  cost INT(6),
+  cost FLOAT(6),
   CONSTRAINT FK_4 FOREIGN KEY (typeId) REFERENCES goodstypes(id)
 ) ENGINE = InnoDB;
 
@@ -78,7 +78,7 @@ CREATE TABLE peripherals
   country VARCHAR(25),
   brand VARCHAR(50),
   voltage INT(5),
-  cost INT(6),
+  cost FLOAT(6),
   CONSTRAINT FK_5 FOREIGN KEY (typeId) REFERENCES goodstypes(id)
 ) ENGINE = InnoDB;
 

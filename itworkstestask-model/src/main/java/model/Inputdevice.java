@@ -24,7 +24,7 @@ public class Inputdevice extends BaseGood{
     @Column(name = "illumination")
     private boolean illumination;
 
-    public Inputdevice(Integer id, String name, Integer typeId, Integer quantity, String country, Integer cost, String color, boolean illumination) {
+    public Inputdevice(Integer id, String name, Integer typeId, Integer quantity, String country, Double cost, String color, boolean illumination) {
         super(id, name, typeId, quantity, country, cost);
         this.color = color;
         this.illumination = illumination;

@@ -95,14 +95,13 @@ function loadInputdevicesPage() {
 }
 
 function deleteComponent() {
-    $("#btn-component-delete").click(function () {
+    $(".btn-component-delete").click(function () {
         var id = $(this).attr("data-id");
         $.ajax({
             url: API_PATH + "goodstype/components/" + id + "/delete",
             type: "DELETE",
             success: loadComponentsPage
         });
-
     });
 }
 function createComponent(goodTypeId) {
@@ -115,7 +114,7 @@ function createComponent(goodTypeId) {
 }
 
 function updateComponent(goodTypeId) {
-    $("#btn-component-update").click(function () {
+    $(".btn-component-update").click(function () {
         var id = $(this).attr("data-id");
         showComponentPageSave(function () {
             $('input[name="typeId"]').val(goodTypeId);
@@ -149,7 +148,7 @@ function saveComponent(id, typeId, model, quantity, country, brand, weight, cost
 }
 
 function deleteInputdevice() {
-    $("#btn-inputdevice-delete").click(function () {
+    $(".btn-inputdevice-delete").click(function () {
         var id = $(this).attr("data-id");
         $.ajax({
             url: API_PATH + "goodstype/inputdevices/" + id + "/delete",
@@ -169,7 +168,7 @@ function createInputdevice(goodTypeId) {
 }
 
 function updateInputdevice(goodTypeId) {
-    $("#btn-inputdevice-update").click(function () {
+    $(".btn-inputdevice-update").click(function () {
         var id = $(this).attr("data-id");
         showInputdevicePageSave(function () {
             $('input[name="typeId"]').val(goodTypeId);
@@ -204,7 +203,7 @@ function saveInputdevice(id, typeId, model, quantity, country, color, illuminati
 }
 
 function deleteMonitor() {
-    $("#btn-monitor-delete").click(function () {
+    $(".btn-monitor-delete").click(function () {
         var id = $(this).attr("data-id");
         $.ajax({
             url: API_PATH + "goodstype/monitors/" + id + "/delete",
@@ -224,7 +223,7 @@ function createMonitor(goodTypeId) {
 }
 
 function updateMonitor(goodTypeId) {
-    $("#btn-monitor-update").click(function () {
+    $(".btn-monitor-update").click(function () {
         var id = $(this).attr("data-id");
         showMonitorPageSave(function () {
             $('input[name="typeId"]').val(goodTypeId);
@@ -259,7 +258,7 @@ function saveMonitor(id, typeId, model, quantity, country, brand, size, cost) {
 }
 
 function deleteStoragedevice() {
-    $("#btn-storagedevice-delete").click(function () {
+    $(".btn-storagedevice-delete").click(function () {
         var id = $(this).attr("data-id");
         $.ajax({
             url: API_PATH + "goodstype/storagedevices/" + id + "/delete",
@@ -279,7 +278,7 @@ function createStoragedevice(goodTypeId) {
 }
 
 function updateStoragedevice(goodTypeId) {
-    $("#btn-storagedevice-update").click(function () {
+    $(".btn-storagedevice-update").click(function () {
         var id = $(this).attr("data-id");
         showStoragedevicePageSave(function () {
             $('input[name="typeId"]').val(goodTypeId);
@@ -314,7 +313,7 @@ function saveStoragedevice(id, typeId, model, quantity, country, brand, capacity
 }
 //
 function deletePeripheria() {
-    $("#btn-peripheria-delete").click(function () {
+    $(".btn-peripheria-delete").click(function () {
         var id = $(this).attr("data-id");
         $.ajax({
             url: API_PATH + "goodstype/peripherals/" + id + "/delete",
@@ -334,7 +333,7 @@ function createPeripheria(goodTypeId) {
 }
 
 function updatePeripheria(goodTypeId) {
-    $("#btn-peripheria-update").click(function () {
+    $(".btn-peripheria-update").click(function () {
         var id = $(this).attr("data-id");
         showPeripheriaPageSave(function () {
             $('input[name="typeId"]').val(goodTypeId);

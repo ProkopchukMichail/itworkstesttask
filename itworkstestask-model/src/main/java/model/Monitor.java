@@ -24,7 +24,7 @@ public class Monitor extends BaseGood {
     @Column(name = "size")
     private Integer size;
 
-    public Monitor(Integer id, String name, Integer typeId, Integer quantity, String country, Integer cost, String brand, Integer size) {
+    public Monitor(Integer id, String name, Integer typeId, Integer quantity, String country, Double cost, String brand, Integer size) {
         super(id, name, typeId, quantity, country, cost);
         this.brand = brand;
         this.size = size;

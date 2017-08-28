@@ -22,7 +22,7 @@ public class Component extends BaseGood{
     @Column(name = "weight")
     private Integer weight;
 
-    public Component(Integer id, String name, Integer typeId, Integer quantity, String country, Integer cost, String brand, Integer weight) {
+    public Component(Integer id, String name, Integer typeId, Integer quantity, String country, Double cost, String brand, Integer weight) {
         super(id, name, typeId, quantity, country, cost);
         this.brand = brand;
         this.weight = weight;
