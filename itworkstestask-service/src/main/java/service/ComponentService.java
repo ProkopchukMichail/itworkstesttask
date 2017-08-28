@@ -9,7 +9,6 @@ import java.util.List;
  */
 public interface ComponentService {
     List<Component> getAll();
-    Component get(int id);
     boolean delete(int id);
     Component save(Component component);
 }

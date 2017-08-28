@@ -21,10 +21,6 @@ public class ComponentDAOImpl implements ComponentDAO {
         return entityManager.createNamedQuery(Component.ALL, Component.class).getResultList();
     }
 
-    public Component get(int id) {
-        return entityManager.find(Component.class, id);
-    }
-
     @Transactional
     public Component save(Component component) {
         if (component.isNew()) {

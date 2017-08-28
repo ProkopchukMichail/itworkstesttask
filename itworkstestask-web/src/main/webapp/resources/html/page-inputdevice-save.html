@@ -1,0 +1,28 @@
+<input type="hidden" value="" name="typeId">
+<input type="hidden" value="" name="id">
+<dl>
+    <dt>Model:</dt>
+    <dd><input type="text" value="" name="model"></dd>
+</dl>
+<dl>
+    <dt>Quantity:</dt>
+    <dd> <input type="datetime" value="" name="quantity"></dd>
+</dl>
+<dl>
+    <dt>Country:</dt>
+    <dd><input type="text" value="" name="country"></dd>
+</dl>
+<dl>
+    <dt>Color:</dt>
+    <dd><input type="text" value="" name="color"></dd>
+</dl>
+<dl>
+    <dt>Illumination:</dt>
+    <dd><input type="checkbox" value="true" name="illumination"></dd>
+</dl>
+<dl>
+    <dt>Cost:</dt>
+    <dd><input type="number" value="" name="cost"></dd>
+</dl>
+<button type="button" onclick=saveInputdevice($('input[name="id"]').val(),$('input[name="typeId"]').val(),$('input[name="model"]').val(),$('input[name="quantity"]').val(),$('input[name="country"]').val(),$('input[name="color"]').val(),$('input[name="illumination"]').val(),$('input[name="cost"]').val())>Save</button>
+<button type="button" onclick=loadInputdevicesPage()>Cancel</button>

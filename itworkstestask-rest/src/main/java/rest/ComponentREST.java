@@ -3,9 +3,7 @@ package rest;
 import abstractController.AbstractComponentController;
 import model.Component;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -20,5 +18,15 @@ public class ComponentREST extends AbstractComponentController {
     @GetMapping
     public List<Component> getAll(){
         return super.getAll();
+    }
+
+    @DeleteMapping("/{id}/delete")
+    public boolean delete(@PathVariable int id){
+        return super.delete(id);
+    }
+
+    @PostMapping(value = "/save",consumes = MediaType.APPLICATION_JSON_VALUE)
+    public Component save(@RequestBody Component component){
+        return super.save(component);
     }
 }

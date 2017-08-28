@@ -1,15 +1,24 @@
 package model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
+
+import static model.Inputdevice.ALL;
+import static model.Inputdevice.DELETE;
+
 
 /**
  * Created by comp on 24.08.2017.
  */
+@SuppressWarnings("JpaQlInspection")
+@NamedQueries({
+        @NamedQuery(name = ALL, query = "SELECT i FROM Inputdevice i ORDER BY i.id"),
+        @NamedQuery(name = DELETE, query = "DELETE FROM Inputdevice i WHERE i.id=:id")
+})
 @Entity
-@Table(name = "input_device")
+@Table(name = "input_devices")
 public class Inputdevice extends BaseGood{
+    public static final String ALL="Inputdevice.ALL";
+    public static final String DELETE="Inputdevice.DELETE";
     @Column(name = "color")
     private String color;
     @Column(name = "illumination")
@@ -22,6 +31,22 @@ public class Inputdevice extends BaseGood{
     }
 
     public Inputdevice() {
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public boolean isIllumination() {
+        return illumination;
+    }
+
+    public void setIllumination(boolean illumination) {
+        this.illumination = illumination;
     }
 
     @Override

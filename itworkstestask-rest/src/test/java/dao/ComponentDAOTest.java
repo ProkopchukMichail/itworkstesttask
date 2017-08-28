@@ -24,14 +24,10 @@ public class ComponentDAOTest {
     ComponentDAO componentDAO;
 
     @Test
-    public void getAll(){
+        public void getAll(){
         Assert.assertEquals(componentDAO.getAll(), Arrays.asList(COMPONENT1,COMPONENT2,COMPONENT3));
     }
 
-    @Test
-    public void get(){
-        Assert.assertEquals(componentDAO.get(1),COMPONENT1);
-    }
 
     @Test
     public void update(){

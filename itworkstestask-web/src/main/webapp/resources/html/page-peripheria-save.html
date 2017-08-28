@@ -1,0 +1,28 @@
+<input type="hidden" value="" name="typeId">
+<input type="hidden" value="" name="id">
+<dl>
+    <dt>Model:</dt>
+    <dd><input type="text" value="" name="model"></dd>
+</dl>
+<dl>
+    <dt>Quantity:</dt>
+    <dd> <input type="datetime" value="" name="quantity"></dd>
+</dl>
+<dl>
+    <dt>Country:</dt>
+    <dd><input type="text" value="" name="country"></dd>
+</dl>
+<dl>
+    <dt>Brand:</dt>
+    <dd><input type="text" value="" name="brand"></dd>
+</dl>
+<dl>
+    <dt>Voltage:</dt>
+    <dd><input type="number" value="" name="voltage"></dd>
+</dl>
+<dl>
+    <dt>Cost:</dt>
+    <dd><input type="number" value="" name="cost"></dd>
+</dl>
+<button type="button" onclick=savePeripheria($('input[name="id"]').val(),$('input[name="typeId"]').val(),$('input[name="model"]').val(),$('input[name="quantity"]').val(),$('input[name="country"]').val(),$('input[name="brand"]').val(),$('input[name="voltage"]').val(),$('input[name="cost"]').val())>Save</button>
+<button type="button" onclick=loadPeripheriaPage()>Cancel</button>

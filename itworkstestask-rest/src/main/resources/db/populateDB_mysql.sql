@@ -40,3 +40,9 @@ INSERT INTO storage_devices(id, name, typeId, quantity, country, brand, capacity
   (2,'storage2',4,10,'china','kingston',120,75),
   (3,'storage3',4,10,'china','samsung',1000,60);
 COMMIT;
+
+INSERT INTO peripherals(id, name, typeId, quantity, country, brand, voltage, cost) VALUES
+  (1,'p1',4,10,'china','lenovo',220,100),
+  (2,'p2',4,10,'china','lenovo',220,100),
+  (3,'p3',4,10,'china','lenovo',220,100);
+COMMIT;

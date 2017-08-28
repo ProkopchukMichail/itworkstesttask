@@ -18,10 +18,6 @@ public class AbstractComponentController {
         return componentDAO.getAll();
     }
 
-    public Component get(int id){
-        return componentDAO.get(id);
-    }
-
     public boolean delete(int id){
         return componentDAO.delete(id);
     }

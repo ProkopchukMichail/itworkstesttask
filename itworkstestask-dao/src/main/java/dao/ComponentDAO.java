@@ -9,7 +9,6 @@ import java.util.List;
  */
 public interface ComponentDAO {
     List<Component> getAll();
-    Component get(int id);
     Component save(Component component);
     boolean delete(int id);
 }
