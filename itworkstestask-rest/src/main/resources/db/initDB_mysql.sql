@@ -8,6 +8,8 @@ DROP TABLE IF EXISTS components;
 DROP TABLE IF EXISTS monitors;
 DROP TABLE IF EXISTS peripherals;
 DROP TABLE IF EXISTS goodstypes;
+DROP TABLE IF EXISTS ticketsInfo;
+DROP TABLE IF EXISTS tickets;
 
 
 CREATE TABLE goodstypes
@@ -81,6 +83,24 @@ CREATE TABLE peripherals
   cost FLOAT(6),
   CONSTRAINT FK_5 FOREIGN KEY (typeId) REFERENCES goodstypes(id)
 ) ENGINE = InnoDB;
+
+CREATE TABLE tickets
+(
+  id INT(11) PRIMARY KEY AUTO_INCREMENT,
+  dateAndTime DATETIME,
+  summ FLOAT(8)
+) ENGINE = InnoDB;
+
+CREATE TABLE ticketsInfo
+(
+  id int(11) PRIMARY KEY AUTO_INCREMENT,
+  ticketId int(11),
+  typeId int(4),
+  goodId int(11),
+  name VARCHAR(50),
+  cost FLOAT(6),
+  CONSTRAINT FK_6 FOREIGN KEY (ticketId) REFERENCES tickets(id)
+) ENGINE =InnoDB;
 
 
 

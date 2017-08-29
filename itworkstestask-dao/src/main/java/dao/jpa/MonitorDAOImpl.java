@@ -21,7 +21,6 @@ public class MonitorDAOImpl implements MonitorDAO {
         return entityManager.createNamedQuery(Monitor.ALL,Monitor.class).getResultList();
     }
 
-    @Transactional
     public Monitor save(Monitor monitor) {
         if(monitor.isNew()) {
             entityManager.persist(monitor);
@@ -29,7 +28,11 @@ public class MonitorDAOImpl implements MonitorDAO {
         } else return entityManager.merge(monitor);
     }
 
-    @Transactional
+    @Override
+    public Monitor get(int id) {
+        return entityManager.find(Monitor.class,id);
+    }
+
     public boolean delete(int id) {
         return entityManager.createNamedQuery(Monitor.DELETE).setParameter("id",id).executeUpdate()!=0;
     }

@@ -21,7 +21,10 @@ public class ComponentDAOImpl implements ComponentDAO {
         return entityManager.createNamedQuery(Component.ALL, Component.class).getResultList();
     }
 
-    @Transactional
+    public Component get(int id){
+        return entityManager.find(Component.class,id);
+    }
+
     public Component save(Component component) {
         if (component.isNew()) {
             entityManager.persist(component);
@@ -29,7 +32,7 @@ public class ComponentDAOImpl implements ComponentDAO {
         } else return entityManager.merge(component);
     }
 
-    @Transactional
+
     public boolean delete(int id) {
         return entityManager.createNamedQuery(Component.DELETE).setParameter("id",id).executeUpdate()!=0;
     }

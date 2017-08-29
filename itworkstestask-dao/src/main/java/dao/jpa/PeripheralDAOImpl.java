@@ -21,7 +21,11 @@ public class PeripheralDAOImpl implements PeripheralDAO {
         return entityManager.createNamedQuery(Peripheria.ALL,Peripheria.class).getResultList();
     }
 
-    @Transactional
+    @Override
+    public Peripheria get(int id) {
+        return entityManager.find(Peripheria.class,id);
+    }
+
     public Peripheria save(Peripheria peripheria) {
         if(peripheria.isNew()){
             entityManager.persist(peripheria);
@@ -29,7 +33,7 @@ public class PeripheralDAOImpl implements PeripheralDAO {
         } else return entityManager.merge(peripheria);
     }
 
-    @Transactional
+
     public boolean delete(int id) {
         return entityManager.createNamedQuery(Peripheria.DELETE).setParameter("id",id).executeUpdate()!=0;
     }

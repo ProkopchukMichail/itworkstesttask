@@ -1,0 +1,30 @@
+<button type="button" id="btn-cart">Cart</button>
+
+<dl>
+    <dt>Name:</dt>
+    <dd><input type="text" id="input-name"></dd>
+</dl>
+<dl>
+    <dt>Quantity:</dt>
+    <dd> <input type="number" id="input-quantity"></dd>
+</dl>
+<dl>
+    <dt>Country:</dt>
+    <dd><input type="text" id="input-country"></dd>
+</dl>
+
+<% _.each(config.customFields, function(field){ %>
+
+<dl>
+    <dt><%- _.upperFirst(field) %>:</dt>
+    <dd><input type="<%- customFieldConfig[field] %>" id="input-<%- field %>"></dd>
+</dl>
+
+<% }); %>
+
+<dl>
+    <dt>Cost:</dt>
+    <dd><input type="number" id="input-cost"></dd>
+</dl>
+<button type="button" id="btn-save">Save</button>
+<button type="button" id="btn-cancel">Cancel</button>

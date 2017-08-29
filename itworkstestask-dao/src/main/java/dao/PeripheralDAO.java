@@ -9,6 +9,7 @@ import java.util.List;
  */
 public interface PeripheralDAO {
     List<Peripheria> getAll();
+    Peripheria get(int id);
     Peripheria save(Peripheria peripheria);
     boolean delete(int id);
 }

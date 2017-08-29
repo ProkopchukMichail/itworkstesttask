@@ -5,6 +5,8 @@ DELETE FROM components;
 DELETE FROM monitors;
 DELETE FROM storage_devices;
 DELETE FROM peripherals;
+DELETE FROM tickets;
+DELETE FROM ticketsinfo;
 
 COMMIT;
 
@@ -42,7 +44,20 @@ INSERT INTO storage_devices(id, name, typeId, quantity, country, brand, capacity
 COMMIT;
 
 INSERT INTO peripherals(id, name, typeId, quantity, country, brand, voltage, cost) VALUES
-  (1,'p1',4,10,'china','lenovo',220,100),
-  (2,'p2',4,10,'china','lenovo',220,100),
-  (3,'p3',4,10,'china','lenovo',220,100);
+  (1,'p1',5,10,'china','lenovo',220,100),
+  (2,'p2',5,10,'china','lenovo',220,100),
+  (3,'p3',5,10,'china','lenovo',220,100);
+COMMIT;
+
+INSERT INTO tickets(id,dateAndTime, summ) VALUES
+  (1,now(),100),
+  (2,now(),35),
+  (3,now(),150);
+COMMIT;
+
+INSERT INTO ticketsinfo(id, ticketId, typeId, goodId, name, cost) VALUES
+  (1,1,5,1,'p1',100),
+  (2,2,2,3,'component3',35),
+  (3,3,5,3,'p3',100),
+  (4,3,4,1,'storage1',50);
 COMMIT;

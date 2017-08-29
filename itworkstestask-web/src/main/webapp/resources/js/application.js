@@ -1,12 +1,51 @@
 var API_PATH = "/itworkstesttask-rest-1.0-SNAPSHOT/rest/";
+var CART_LS_KEY = "cart";
+
+var goodsConfig = {
+    "inputDevices": {
+        id: 1,
+        apiUrl: "goodstype/inputdevices",
+        customFields: ["color", "illumination"]
+    },
+    "components": {
+        id: 2,
+        apiUrl: "goodstype/components",
+        customFields: ["brand", "weight"]
+    },
+    "monitors": {
+        id: 3,
+        apiUrl: "goodstype/monitors",
+        customFields: ["brand", "size"]
+    },
+    "storageDevices": {
+        id: 4,
+        apiUrl: "goodstype/storagedevices",
+        customFields: ["brand", "capacity"]
+    },
+    "peripherals": {
+        id: 5,
+        apiUrl: "goodstype/peripherals",
+        customField: ["brand", "voltage"]
+    }
+};
+
+var customFieldConfig = {
+    "color": "string",
+    "illumination": "checkbox",
+    "brand": "string",
+    "weight": "number",
+    "size": "number",
+    "capacity": "number",
+    "voltage": "number"
+};
+
 $(document).ready(function () {
-    loadGoodstypePage(function () {
-        loadGoodsPage();
-    });
+    loadGoodTypesPage();
 });
+
 function showPage(pagePath, context, done) {
     $.get(pagePath, function (template) {
-        var output = Mustache.render(template, context);
+        var output = _.template(template)(context);
 
         $("#content").html(output);
 
@@ -14,355 +53,187 @@ function showPage(pagePath, context, done) {
     });
 }
 
-function loadGoodstypePage(done) {
+function loadGoodTypesPage(done) {
     $.get(API_PATH + "goodstype", function (goodstype) {
-        showPage("resources/html/page-goodstype.html", {goodstype: goodstype}, done);
+        showPage("resources/html/page-goodstype.html", { goodstype: goodstype }, function(){
+            handleCartNavigation();
+
+            $(".btn-goodstype-select").click(function () {
+                var goodTypeId = +$(this).attr("data-id");
+                var config = _(goodsConfig).values().find(function (c) {
+                    return c.id === goodTypeId;
+                });
+
+                loadGoodsPage(config);
+            });
+
+            done && done();
+        });
     })
 }
 
-function loadGoodsPage() {
-    $(".btn-goodstype-select").click(function () {
-        var goodTypeId = $(this).attr("data-id");
-        console.log(goodTypeId);
-        switch (goodTypeId) {
-            case "1":
-                loadInputdevicesPage();
-                break;
-            case "2":
-                loadComponentsPage();
-                break;
-            case "3":
-                loadMonitorsPage();
-                break;
-            case "4":
-                loadStoragedevicePage();
-                break;
-            case "5":
-                loadPeripheriaPage();
-                break;
-        }
-    });
-}
-function loadPeripheriaPage() {
-    var goodTypeId = 5;
-    $.get(API_PATH + "goodstype/peripherals", function (peripherals) {
-        showPage("resources/html/page-peripherals.html", {peripherals:peripherals}, function () {
-            deletePeripheria();
-            createPeripheria(goodTypeId);
-            updatePeripheria(goodTypeId);
-        })
-    })
-}
-function loadStoragedevicePage() {
-    var goodTypeId = 4;
-    $.get(API_PATH + "goodstype/storagedevices", function (storagedevices) {
-        showPage("resources/html/page-storagedevices.html", {storagedevices:storagedevices}, function () {
-            deleteStoragedevice();
-            createStoragedevice(goodTypeId);
-            updateStoragedevice(goodTypeId);
-        })
-    })
-}
-function loadMonitorsPage() {
-    var goodTypeId = 3;
-    $.get(API_PATH + "goodstype/monitors", function (monitors) {
-        showPage("resources/html/page-monitors.html", {monitors: monitors}, function () {
-            deleteMonitor();
-            createMonitor(goodTypeId);
-            updateMonitor(goodTypeId);
-        })
-    })
-}
-function loadComponentsPage() {
-    var goodTypeId = 2;
-    $.get(API_PATH + "goodstype/components", function (components) {
-        showPage("resources/html/page-components.html", {components: components}, function () {
-            deleteComponent();
-            createComponent(goodTypeId);
-            updateComponent(goodTypeId);
-        })
-    })
-}
-function loadInputdevicesPage() {
-    var goodTypeId = 1;
-    $.get(API_PATH + "goodstype/inputdevices", function (inputdevices) {
-        showPage("resources/html/page-inputdevices.html", {inputdevices: inputdevices}, function () {
-            deleteInputdevice();
-            createInputdevice(goodTypeId);
-            updateInputdevice(goodTypeId);
-        })
-    })
-}
+function loadGoodsPage(config) {
+    $.get(API_PATH + config.apiUrl, function (goods) {
+        showPage("resources/html/page-goods.html", { goods: goods, config: config }, function () {
+            handleCartNavigation();
 
-function deleteComponent() {
-    $(".btn-component-delete").click(function () {
-        var id = $(this).attr("data-id");
-        $.ajax({
-            url: API_PATH + "goodstype/components/" + id + "/delete",
-            type: "DELETE",
-            success: loadComponentsPage
-        });
-    });
-}
-function createComponent(goodTypeId) {
-    $("#btn-component-create").click(function () {
-        showComponentPageSave(function () {
-            $('input[name="typeId"]').val(goodTypeId);
-            $('input[name="id"]').val(0);
+            $(".btn-good-delete").click(function () {
+                if (confirm("Are you sure?")) {
+                    var id = $(this).attr("data-id");
+                    $.ajax({
+                        url: API_PATH + config.apiUrl + "/" + id + "/delete",
+                        type: "DELETE",
+                        success: function() {
+                            loadGoodsPage(config);
+                        }
+                    });
+                }
+            });
+
+            $(".btn-good-create").click(function () {
+                loadGoodPageSave({ typeId: config.id, id: 0 }, config);
+            });
+
+            $(".btn-good-update").click(function () {
+                var id = +$(this).attr("data-id");
+                var good = _.find(goods, function(good){ return good.id === id });
+                loadGoodPageSave(good, config);
+            });
+
+            $(".btn-good-add-to-cart").click(function () {
+                var id = +$(this).attr("data-id");
+                var good = _.find(goods, function(good){ return good.id === id });
+                var sCart = localStorage.getItem(CART_LS_KEY);
+                var cart = sCart ? JSON.parse(sCart): [];
+
+                var sameGoodInCart = _.find(cart, function (g) {
+                    return g.id === id && g.typeId === good.typeId;
+                });
+
+                if (sameGoodInCart) {
+                    sameGoodInCart.amount++;
+                } else {
+                    cart.push({
+                        id: id,
+                        name: good.name,
+                        typeId: good.typeId,
+                        amount: 1,
+                        cost: good.cost
+                    })
+                }
+
+                localStorage.setItem(CART_LS_KEY, JSON.stringify(cart));
+            })
         });
     });
 }
 
-function updateComponent(goodTypeId) {
-    $(".btn-component-update").click(function () {
-        var id = $(this).attr("data-id");
-        showComponentPageSave(function () {
-            $('input[name="typeId"]').val(goodTypeId);
-            $('input[name="id"]').val(id);
+function loadGoodPageSave(_good, config, done) {
+    showPage("resources/html/page-good-save.html", { config: config, customFieldConfig: customFieldConfig }, function () {
+        handleCartNavigation();
+
+        $("#input-name").val(_good.name);
+        $("#input-quantity").val(_good.quantity);
+        $("#input-country").val(_good.country);
+        $("#input-cost").val(_good.cost);
+
+        _.each(config.customFields, function(field){
+            var element = $("#input-" + field);
+
+            switch (customFieldConfig[field]) {
+                case "string":
+                case "number":
+                    element.val(_good[field]);
+                    break;
+                case "checkbox":
+                    element.prop("checked", _good[field]);
+                    break;
+            }
         });
+
+        $('#btn-save').click(function(){
+            var good = {
+                id: _good.id,
+                typeId: _good.typeId,
+                name: $("#input-name").val(),
+                quantity: +$("#input-quantity").val(),
+                country: $("#input-country").val(),
+                cost: +$("#input-cost").val()
+            };
+
+            _.each(config.customFields, function(field){
+                var element = $("#input-" + field);
+
+                switch (customFieldConfig[field]) {
+                    case "string":
+                        good[field] = element.val();
+                        break;
+                    case "number":
+                        good[field] = +element.val();
+                        break;
+                    case "checkbox":
+                        good[field] = element.prop("checked");
+                        break;
+                }
+            });
+
+            $.ajax({
+                url: API_PATH + config.apiUrl + "/save",
+                type: "POST",
+                data: JSON.stringify(good),
+                dataType: "json",
+                contentType: "application/json",
+                success: function() {
+                    loadGoodsPage(config);
+                }
+            });
+        });
+
+        $('#btn-cancel').click(function() {
+            loadGoodsPage(config);
+        });
+
+        done && done();
     });
 }
 
-function showComponentPageSave(done) {
-    showPage("resources/html/page-component-save.html", null, done);
-}
-function saveComponent(id, typeId, model, quantity, country, brand, weight, cost) {
-    var component = {
-        id: id,
-        typeId: typeId,
-        name: model,
-        quantity: quantity,
-        country: country,
-        brand: brand,
-        weight: weight,
-        cost: cost
-    };
-    $.ajax({
-        url: API_PATH + "goodstype/components/save",
-        type: "POST",
-        data: JSON.stringify(component),
-        dataType: "json",
-        contentType: "application/json",
-        success: loadComponentsPage
-    })
-}
-
-function deleteInputdevice() {
-    $(".btn-inputdevice-delete").click(function () {
-        var id = $(this).attr("data-id");
-        $.ajax({
-            url: API_PATH + "goodstype/inputdevices/" + id + "/delete",
-            type: "DELETE",
-            success: loadInputdevicesPage
-        });
+function handleCartNavigation() {
+    $("#btn-cart").click(function () {
+        loadCartPage();
     });
 }
 
-function createInputdevice(goodTypeId) {
-    $("#btn-inputdevice-create").click(function () {
-        showInputdevicePageSave(function () {
-            $('input[name="typeId"]').val(goodTypeId);
-            $('input[name="id"]').val(0);
+function loadCartPage() {
+    var sCart = localStorage.getItem(CART_LS_KEY);
+    var cart = sCart ? JSON.parse(sCart): [];
+
+    showPage("resources/html/page-cart.html", { cart: cart }, function () {
+
+        $("#btn-cancel").click(function() {
+            loadGoodTypesPage();
+        });
+
+        $("#btn-clean-cart").click(function() {
+            localStorage.clear();
+            loadGoodTypesPage();
+        });
+
+        $("#btn-pay").click(function () {
+            var dto = _.map(cart, function (item) {
+                return _.pick(item, ["id", "typeId", "amount"]);
+            });
+
+            $.ajax({
+                url: "TODO",
+                type: "POST",
+                data: JSON.stringify(dto),
+                dataType: "json",
+                contentType: "application/json",
+                success: function() {
+                    alert("Thank you!");
+                    loadGoodTypesPage();
+                }
+            });
         });
     });
-}
-
-function updateInputdevice(goodTypeId) {
-    $(".btn-inputdevice-update").click(function () {
-        var id = $(this).attr("data-id");
-        showInputdevicePageSave(function () {
-            $('input[name="typeId"]').val(goodTypeId);
-            $('input[name="id"]').val(id);
-        });
-    });
-}
-
-function showInputdevicePageSave(done) {
-    showPage("resources/html/page-inputdevice-save.html", null, done);
-}
-
-function saveInputdevice(id, typeId, model, quantity, country, color, illumination, cost) {
-    var component = {
-        id: id,
-        typeId: typeId,
-        name: model,
-        quantity: quantity,
-        country: country,
-        color: color,
-        illumination: illumination,
-        cost: cost
-    };
-    $.ajax({
-        url: API_PATH + "goodstype/inputdevices/save",
-        type: "POST",
-        data: JSON.stringify(component),
-        dataType: "json",
-        contentType: "application/json",
-        success: loadInputdevicesPage
-    })
-}
-
-function deleteMonitor() {
-    $(".btn-monitor-delete").click(function () {
-        var id = $(this).attr("data-id");
-        $.ajax({
-            url: API_PATH + "goodstype/monitors/" + id + "/delete",
-            type: "DELETE",
-            success: loadMonitorsPage
-        });
-    });
-}
-
-function createMonitor(goodTypeId) {
-    $("#btn-monitor-create").click(function () {
-        showMonitorPageSave(function () {
-            $('input[name="typeId"]').val(goodTypeId);
-            $('input[name="id"]').val(0);
-        });
-    });
-}
-
-function updateMonitor(goodTypeId) {
-    $(".btn-monitor-update").click(function () {
-        var id = $(this).attr("data-id");
-        showMonitorPageSave(function () {
-            $('input[name="typeId"]').val(goodTypeId);
-            $('input[name="id"]').val(id);
-        });
-    });
-}
-
-function showMonitorPageSave(done) {
-    showPage("resources/html/page-monitor-save.html", null, done);
-}
-
-function saveMonitor(id, typeId, model, quantity, country, brand, size, cost) {
-    var component = {
-        id: id,
-        typeId: typeId,
-        name: model,
-        quantity: quantity,
-        country: country,
-        brand: brand,
-        size: size,
-        cost: cost
-    };
-    $.ajax({
-        url: API_PATH + "goodstype/monitors/save",
-        type: "POST",
-        data: JSON.stringify(component),
-        dataType: "json",
-        contentType: "application/json",
-        success: loadMonitorsPage
-    })
-}
-
-function deleteStoragedevice() {
-    $(".btn-storagedevice-delete").click(function () {
-        var id = $(this).attr("data-id");
-        $.ajax({
-            url: API_PATH + "goodstype/storagedevices/" + id + "/delete",
-            type: "DELETE",
-            success: loadStoragedevicePage
-        });
-    });
-}
-
-function createStoragedevice(goodTypeId) {
-    $("#btn-storagedevice-create").click(function () {
-        showStoragedevicePageSave(function () {
-            $('input[name="typeId"]').val(goodTypeId);
-            $('input[name="id"]').val(0);
-        });
-    });
-}
-
-function updateStoragedevice(goodTypeId) {
-    $(".btn-storagedevice-update").click(function () {
-        var id = $(this).attr("data-id");
-        showStoragedevicePageSave(function () {
-            $('input[name="typeId"]').val(goodTypeId);
-            $('input[name="id"]').val(id);
-        });
-    });
-}
-
-function showStoragedevicePageSave(done) {
-    showPage("resources/html/page-storagedevice-save.html", null, done);
-}
-
-function saveStoragedevice(id, typeId, model, quantity, country, brand, capacity, cost) {
-    var component = {
-        id: id,
-        typeId: typeId,
-        name: model,
-        quantity: quantity,
-        country: country,
-        brand: brand,
-        capacity: capacity,
-        cost: cost
-    };
-    $.ajax({
-        url: API_PATH + "goodstype/storagedevices/save",
-        type: "POST",
-        data: JSON.stringify(component),
-        dataType: "json",
-        contentType: "application/json",
-        success: loadMonitorsPage
-    })
-}
-//
-function deletePeripheria() {
-    $(".btn-peripheria-delete").click(function () {
-        var id = $(this).attr("data-id");
-        $.ajax({
-            url: API_PATH + "goodstype/peripherals/" + id + "/delete",
-            type: "DELETE",
-            success: loadPeripheriaPage
-        });
-    });
-}
-
-function createPeripheria(goodTypeId) {
-    $("#btn-peripheria-create").click(function () {
-        showPeripheriaPageSave(function () {
-            $('input[name="typeId"]').val(goodTypeId);
-            $('input[name="id"]').val(0);
-        });
-    });
-}
-
-function updatePeripheria(goodTypeId) {
-    $(".btn-peripheria-update").click(function () {
-        var id = $(this).attr("data-id");
-        showPeripheriaPageSave(function () {
-            $('input[name="typeId"]').val(goodTypeId);
-            $('input[name="id"]').val(id);
-        });
-    });
-}
-
-function showPeripheriaPageSave(done) {
-    showPage("resources/html/page-peripheria-save.html", null, done);
-}
-
-function savePeripheria(id, typeId, model, quantity, country, brand, voltage, cost) {
-    var component = {
-        id: id,
-        typeId: typeId,
-        name: model,
-        quantity: quantity,
-        country: country,
-        brand: brand,
-        voltage: voltage,
-        cost: cost
-    };
-    $.ajax({
-        url: API_PATH + "goodstype/peripherals/save",
-        type: "POST",
-        data: JSON.stringify(component),
-        dataType: "json",
-        contentType: "application/json",
-        success: loadPeripheriaPage
-    })
 }

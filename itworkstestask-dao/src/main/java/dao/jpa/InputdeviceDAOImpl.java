@@ -21,7 +21,11 @@ public class InputdeviceDAOImpl implements InputdeviceDAO {
         return entityManager.createNamedQuery(Inputdevice.ALL, Inputdevice.class).getResultList();
     }
 
-    @Transactional
+    @Override
+    public Inputdevice get(int id) {
+        return entityManager.find(Inputdevice.class,id);
+    }
+
     public Inputdevice save(Inputdevice inputdevice) {
         if (inputdevice.isNew()) {
             entityManager.persist(inputdevice);
@@ -29,7 +33,6 @@ public class InputdeviceDAOImpl implements InputdeviceDAO {
         } else return entityManager.merge(inputdevice);
     }
 
-    @Transactional
     public boolean delete(int id) {
         return entityManager.createNamedQuery(Inputdevice.DELETE).setParameter("id",id).executeUpdate()!=0;
     }

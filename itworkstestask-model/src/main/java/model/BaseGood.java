@@ -10,7 +10,7 @@ import javax.persistence.MappedSuperclass;
 public abstract class BaseGood extends Identification {
     @Column(name = "name", nullable = false)
     private String name;
-    @Column(name = "typeId")
+    @Column(name = "typeId", nullable = false)
     private Integer typeId;
     @Column(name = "quantity")
     private Integer quantity;

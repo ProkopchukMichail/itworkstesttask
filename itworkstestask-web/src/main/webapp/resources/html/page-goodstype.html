@@ -1,10 +1,12 @@
+<button type="button" id="btn-cart">Cart</button>
+
 <table>
     <tr>
         <th>Category</th>
     </tr>
-    {{#goodstype}}
-    <tr>
-        <td><a href="javascript:void(0)" data-id="{{id}}" class="btn-goodstype-select">{{typeName}}</a></td>
-    </tr>
-    {{/goodstype}}
+    <% _.each(goodstype, function(type) { %>
+        <tr>
+            <td><a href="javascript:void(0)" data-id="<%- type.id %>" class="btn-goodstype-select"><%- type.typeName %></a></td>
+        </tr>
+    <% }); %>
 </table>

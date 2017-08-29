@@ -4,6 +4,7 @@ import dao.InputdeviceDAO;
 import model.Inputdevice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import service.InputdeviceService;
 import service.discount.Discount;
 
@@ -21,10 +22,12 @@ public class InputdeviceServiceImpl implements InputdeviceService {
         return Discount.inputdevicesWithDiscount(inputdeviceDAO.getAll());
     }
 
+    @Transactional
     public Inputdevice save(Inputdevice inputdevice) {
         return inputdeviceDAO.save(inputdevice);
     }
 
+    @Transactional
     public boolean delete(int id) {
         return inputdeviceDAO.delete(id);
     }

@@ -1,0 +1,22 @@
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Cost</th>
+        <th>Amount</th>
+        <th>Total cost</th>
+    </tr>
+    <% _.each(cart, function(item){ %>
+    <tr>
+        <td><%- item.name %></td>
+        <td><%- item.cost %></td>
+        <td><%- item.amount %></td>
+        <td><%- item.amount * item.cost %></td>
+    </tr>
+    <% }); %>
+</table>
+
+<p>Total cost: <%= _.reduce(cart, function(acc, item){ return acc + item.cost * item.amount; }, 0) %></p>
+
+<button type="button" id="btn-pay" <% if (!cart.length) { %> disabled <% } %> >Pay</button>
+<button type="button" id="btn-clean-cart" <% if (!cart.length) { %> disabled <% } %> >Clean cart</button>
+<button type="button" id="btn-cancel">Cancel</button>

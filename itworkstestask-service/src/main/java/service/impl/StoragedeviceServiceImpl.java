@@ -4,6 +4,7 @@ import dao.StoragedeviceDAO;
 import model.Storagedevice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import service.StoragedeviceService;
 import service.discount.Discount;
 
@@ -21,10 +22,12 @@ public class StoragedeviceServiceImpl implements StoragedeviceService {
         return Discount.storagedevicesWithDiscount(storagedeviceDAO.getAll());
     }
 
+    @Transactional
     public Storagedevice save(Storagedevice storagedevice) {
         return storagedeviceDAO.save(storagedevice);
     }
 
+    @Transactional
     public boolean delete(int id) {
         return storagedeviceDAO.delete(id);
     }

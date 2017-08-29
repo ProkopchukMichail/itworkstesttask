@@ -4,6 +4,7 @@ import dao.ComponentDAO;
 import model.Component;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import service.ComponentService;
 import service.discount.Discount;
 
@@ -21,10 +22,12 @@ public class ComponentServiceImpl implements ComponentService {
         return Discount.componentsWithDiscount(componentDAO.getAll());
     }
 
+    @Transactional
     public boolean delete(int id) {
         return componentDAO.delete(id);
     }
 
+    @Transactional
     public Component save(Component component) {
         return componentDAO.save(component);
     }

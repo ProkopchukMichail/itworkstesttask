@@ -9,6 +9,7 @@ import java.util.List;
  */
 public interface InputdeviceDAO {
     List<Inputdevice> getAll();
+    Inputdevice get(int id);
     Inputdevice save(Inputdevice inputdevice);
     boolean delete(int id);
 }

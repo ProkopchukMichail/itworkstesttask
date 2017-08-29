@@ -1,0 +1,27 @@
+<button type="button" class="btn-good-create">Create</button>
+<button type="button" id="btn-cart">Cart</button>
+<table>
+    <tr>
+        <th>Model</th>
+        <th>Quantity</th>
+        <th>Country</th>
+        <% _.each(config.customFields, function(field){ %>
+        <th><%- _.upperFirst(field) %></th>
+        <% }); %>
+        <th>Cost</th>
+    </tr>
+    <% _.each(goods, function(good){ %>
+    <tr>
+        <td><%- good.name %></td>
+        <td><%- good.quantity %></td>
+        <td><%- good.country %></td>
+        <% _.each(config.customFields, function(field){ %>
+        <td><%- good[field] %></td>
+        <% }); %>
+        <td><%- good.cost %></td>
+        <td><button type="button" data-id="<%- good.id %>" class="btn-good-update">Update</button></td>
+        <td><button type="button" data-id="<%- good.id %>" class="btn-good-delete">Delete</button></td>
+        <td><button type="button" data-id="<%- good.id %>" class="btn-good-add-to-cart">Add to cart</button></td>
+    </tr>
+    <% }); %>
+</table>

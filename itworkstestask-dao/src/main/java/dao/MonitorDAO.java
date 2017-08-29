@@ -8,6 +8,7 @@ import java.util.List;
  */
 public interface MonitorDAO {
     List<Monitor> getAll();
+    Monitor get(int id);
     Monitor save(Monitor monitor);
     boolean delete(int id);
 }

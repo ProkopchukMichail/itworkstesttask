@@ -21,14 +21,18 @@ public class StoragedeviceDAOImpl implements StoragedeviceDAO{
     public List<Storagedevice> getAll() {
         return entityManager.createNamedQuery(Storagedevice.ALL,Storagedevice.class).getResultList();
     }
-    @Transactional
+
+    @Override
+    public Storagedevice get(int id) {
+        return entityManager.find(Storagedevice.class,id);
+    }
+
     public Storagedevice save(Storagedevice storagedevice) {
         if(storagedevice.isNew()){
             entityManager.persist(storagedevice);
             return storagedevice;
         } else return entityManager.merge(storagedevice);
     }
-    @Transactional
     public boolean delete(int id) {
         return entityManager.createNamedQuery(Storagedevice.DELETE).setParameter("id",id).executeUpdate()!=0;
     }

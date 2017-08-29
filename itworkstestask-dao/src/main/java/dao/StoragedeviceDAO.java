@@ -9,6 +9,7 @@ import java.util.List;
  */
 public interface StoragedeviceDAO {
     List<Storagedevice> getAll();
+    Storagedevice get(int id);
     Storagedevice save(Storagedevice storagedevice);
     boolean delete(int id);
 }
