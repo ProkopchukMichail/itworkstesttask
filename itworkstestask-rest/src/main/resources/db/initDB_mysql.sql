@@ -98,6 +98,7 @@ CREATE TABLE ticketsInfo
   typeId int(4),
   goodId int(11),
   name VARCHAR(50),
+  amount int(4),
   cost FLOAT(6),
   CONSTRAINT FK_6 FOREIGN KEY (ticketId) REFERENCES tickets(id)
 ) ENGINE =InnoDB;

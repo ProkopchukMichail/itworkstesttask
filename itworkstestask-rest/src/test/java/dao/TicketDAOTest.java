@@ -31,7 +31,7 @@ public class TicketDAOTest {
         Assert.assertEquals(ticketDAO.getAll(), Arrays.asList());
     }
 
-    @Test
+    /*@Test
     public void getAllTicketInfo() {
         Assert.assertEquals(ticketService.getAllTicketInfo(1),
                 Arrays.asList(new TicketInfo(1, 1, 1, 1, "qwe", 123.0),
@@ -49,5 +49,5 @@ public class TicketDAOTest {
         TicketInfo ticketInfo=new TicketInfo(5,1,1,1,"qwe",123.0);
         ticketService.saveTicketInfo(ticketInfo);
         Assert.assertEquals(ticketService.getAllTicketInfo(1),null);
-    }
+    }*/
 }

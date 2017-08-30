@@ -45,7 +45,7 @@ public class TicketServiceImpl implements TicketService {
         return ticketInfoDAO.getAll(ticketId);
     }
 
-    @Override
+  /*  @Override
     @Transactional
     public void save(List<TicketDTO> ticketDTOList) {
         List<TicketInfo> ticketInfos=new ArrayList<TicketInfo>();
@@ -87,6 +87,7 @@ public class TicketServiceImpl implements TicketService {
 
 
     @Override
+    @Transactional
     public Ticket saveTicket(Ticket ticket) {
         return ticketDAO.save(ticket);
     }
@@ -95,5 +96,5 @@ public class TicketServiceImpl implements TicketService {
     @Transactional
     public void saveTicketInfo(TicketInfo ticketInfo){
         ticketInfoDAO.save(ticketInfo);
-    }
+    }*/
 }

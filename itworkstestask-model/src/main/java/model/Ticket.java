@@ -1,5 +1,10 @@
 package model;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import model.util.LocalDateTimeDeserializer;
+import model.util.LocalDateTimeSerializer;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
@@ -16,6 +21,8 @@ public class Ticket extends Identification {
     public static final String ALL="Ticket.ALL";
 
     @Column(name = "dateAndTime")
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
+    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     private LocalDateTime dateAndTime;
     @Column(name = "summ")
     private Double summ;

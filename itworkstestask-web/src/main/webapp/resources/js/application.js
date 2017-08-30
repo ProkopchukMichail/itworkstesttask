@@ -58,6 +58,10 @@ function loadGoodTypesPage(done) {
         showPage("resources/html/page-goodstype.html", { goodstype: goodstype }, function(){
             handleCartNavigation();
 
+            $("#btn-tickets").click(function () {
+                loadTicketsPage();
+            });
+
             $(".btn-goodstype-select").click(function () {
                 var goodTypeId = +$(this).attr("data-id");
                 var config = _(goodsConfig).values().find(function (c) {
@@ -76,6 +80,10 @@ function loadGoodsPage(config) {
     $.get(API_PATH + config.apiUrl, function (goods) {
         showPage("resources/html/page-goods.html", { goods: goods, config: config }, function () {
             handleCartNavigation();
+
+            $("#btn-cancel").click(function () {
+                loadGoodTypesPage();
+            });
 
             $(".btn-good-delete").click(function () {
                 if (confirm("Are you sure?")) {
@@ -203,6 +211,7 @@ function handleCartNavigation() {
     });
 }
 
+
 function loadCartPage() {
     var sCart = localStorage.getItem(CART_LS_KEY);
     var cart = sCart ? JSON.parse(sCart): [];
@@ -236,4 +245,29 @@ function loadCartPage() {
             });
         });
     });
+}
+
+function loadTicketsPage() {
+    $.get(API_PATH+"tickets",function (tickets) {
+        showPage("resources/html/page-tickets.html", {tickets:tickets}, function () {
+            $("#btn-cancel").click(function () {
+               loadGoodTypesPage();
+            });
+
+            $(".btn-ticket-select").click(function () {
+                var ticketId=$(this).attr("data-id");
+                loadTicketInfoPage(ticketId);
+            });
+        });
+    });
+}
+
+function loadTicketInfoPage(ticketId) {
+    $.get(API_PATH+"tickets/"+ticketId,function (ticketinfoList) {
+        showPage("resources/html/page-ticketinfo.html",{ticketinfoList:ticketinfoList},function () {
+            $("#btn-cancel").click(function () {
+                loadTicketsPage();
+            });
+        })
+    })
 }

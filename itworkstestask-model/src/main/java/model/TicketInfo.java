@@ -11,8 +11,8 @@ import javax.persistence.*;
 })
 @Entity
 @Table(name = "ticketsinfo")
-public class TicketInfo extends Identification{
-    public static final String ALL="TicketInfo.ALL";
+public class TicketInfo extends Identification {
+    public static final String ALL = "TicketInfo.ALL";
 
     @Column(name = "ticketId")
     private Integer ticketId;
@@ -22,15 +22,18 @@ public class TicketInfo extends Identification{
     private Integer goodId;
     @Column(name = "name")
     private String name;
+    @Column(name = "amount")
+    private Integer amount;
     @Column(name = "cost")
     private Double cost;
 
-    public TicketInfo(Integer id, Integer ticketId, Integer typeId, Integer goodId, String name, Double cost) {
+    public TicketInfo(Integer id, Integer ticketId, Integer typeId, Integer goodId, String name, Integer amount, Double cost) {
         super(id);
         this.ticketId = ticketId;
         this.typeId = typeId;
         this.goodId = goodId;
         this.name = name;
+        this.amount = amount;
         this.cost = cost;
     }
 
@@ -69,6 +72,14 @@ public class TicketInfo extends Identification{
         this.name = name;
     }
 
+    public Integer getAmount() {
+        return amount;
+    }
+
+    public void setAmount(Integer amount) {
+        this.amount = amount;
+    }
+
     public Double getCost() {
         return cost;
     }
@@ -84,6 +95,7 @@ public class TicketInfo extends Identification{
                 ", typeId=" + typeId +
                 ", goodId=" + goodId +
                 ", name='" + name + '\'' +
+                ", amount=" + amount +
                 ", cost=" + cost +
                 '}';
     }

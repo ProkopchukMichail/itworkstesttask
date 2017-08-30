@@ -1,0 +1,17 @@
+<button type="button" id="btn-cancel">Cancel</button>
+<table>
+    <tr>
+        <th>Name:</th>
+        <th>Amount:</th>
+        <th>Cost:</th>
+        <th>Total cost:</th>
+    </tr>
+    <% _.each(ticketinfoList, function(ticketinfo) { %>
+    <tr>
+        <td><%- ticketinfo.name %></td>
+        <td><%- ticketinfo.amount %></td>
+        <td><%- ticketinfo.cost %></td>
+        <td><%- ticketinfo.cost * ticketinfo.amount %></td>
+    </tr>
+    <% }); %>
+</table>

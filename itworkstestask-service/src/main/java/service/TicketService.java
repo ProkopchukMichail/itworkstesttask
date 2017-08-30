@@ -12,7 +12,7 @@ import java.util.List;
 public interface TicketService {
     List<Ticket> getAllTickets();
     List<TicketInfo> getAllTicketInfo(int ticketId);
-    void save(List<TicketDTO> ticketDTOList);
+/*    void save(List<TicketDTO> ticketDTOList);
     Ticket saveTicket(Ticket ticket);
-    void saveTicketInfo(TicketInfo ticketInfo);
+    void saveTicketInfo(TicketInfo ticketInfo);*/
 }

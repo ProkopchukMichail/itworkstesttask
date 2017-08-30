@@ -1,0 +1,13 @@
+<button type="button" id="btn-cancel">Cancel</button>
+<table>
+    <tr>
+        <th>Date and time:</th>
+        <th>Total cost:</th>
+    </tr>
+    <% _.each(tickets, function(ticket) { %>
+        <tr>
+            <td><a href="javascript:void(0)" data-id="<%- ticket.id %>" class="btn-ticket-select"><%- ticket.dateAndTime %></a></td>
+            <td><%- ticket.summ %></td>
+        </tr>
+    <% }); %>
+</table>

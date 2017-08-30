@@ -55,9 +55,9 @@ INSERT INTO tickets(id,dateAndTime, summ) VALUES
   (3,now(),150);
 COMMIT;
 
-INSERT INTO ticketsinfo(id, ticketId, typeId, goodId, name, cost) VALUES
-  (1,1,5,1,'p1',100),
-  (2,2,2,3,'component3',35),
-  (3,3,5,3,'p3',100),
-  (4,3,4,1,'storage1',50);
+INSERT INTO ticketsinfo(id, ticketId, typeId, goodId, name, amount, cost) VALUES
+  (1,1,5,1,'p1',1,100),
+  (2,2,2,3,'component3',2,35),
+  (3,3,5,3,'p3',1,100),
+  (4,3,4,1,'storage1',1,50);
 COMMIT;
