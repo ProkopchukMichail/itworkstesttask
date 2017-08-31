@@ -23,13 +23,17 @@ COMMIT;
 INSERT INTO inputdevices(id, name, typeId, quantity, country, color, illumination,cost) VALUES
   (1,'input1',1,4,'china','pink',FALSE,30 ),
   (2,'input2',1,8,'china','black',FALSE,40 ),
-  (3,'input3',1,2,'usa','red',TRUE,80);
+  (3,'input3',1,2,'usa','red',TRUE,80),
+  (4,'input3',1,2,'usa','red',TRUE,80),
+  (5,'input3',1,2,'usa','red',TRUE,80);
 COMMIT;
 
 INSERT INTO components(id, name, typeId, quantity, country, brand, weight,cost) VALUES
   (1,'component1',2,3,'china','intel',250,15.6),
   (2,'component2',2,7,'usa','amd',180,50),
-  (3,'component3',2,30,'china','nvidia',150,35);
+  (3,'component3',2,30,'china','nvidia',150,35),
+  (4,'component4',2,30,'china','nvidia',150,35),
+  (5,'component5',2,30,'china','nvidia',150,35);
 COMMIT;
 
 INSERT INTO monitors(id, name, typeId, quantity, country, brand, size,cost) VALUES
