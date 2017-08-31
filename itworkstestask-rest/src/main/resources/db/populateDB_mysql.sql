@@ -1,17 +1,17 @@
 USE itworkstesttask;
 
-DELETE FROM input_devices;
+DELETE FROM inputdevices;
 DELETE FROM components;
 DELETE FROM monitors;
-DELETE FROM storage_devices;
-DELETE FROM peripherals;
-DELETE FROM goodstypes;
+DELETE FROM storagedevices;
+DELETE FROM peripheraldevices;
+DELETE FROM goodTypes;
 DELETE FROM ticketsinfo;
 DELETE FROM tickets;
 
 COMMIT;
 
-INSERT INTO goodstypes(id, typeName) VALUES
+INSERT INTO goodTypes(id, typeName) VALUES
   (1,'Input device'),
   (2,'Component'),
   (3,'Monitor'),
@@ -20,7 +20,7 @@ INSERT INTO goodstypes(id, typeName) VALUES
 COMMIT;
 
 
-INSERT INTO input_devices(id, name, typeId, quantity, country, color, illumination,cost) VALUES
+INSERT INTO inputdevices(id, name, typeId, quantity, country, color, illumination,cost) VALUES
   (1,'input1',1,4,'china','pink',FALSE,30 ),
   (2,'input2',1,8,'china','black',FALSE,40 ),
   (3,'input3',1,2,'usa','red',TRUE,80);
@@ -38,13 +38,13 @@ INSERT INTO monitors(id, name, typeId, quantity, country, brand, size,cost) VALU
   (3,'monitor3',3,10,'china','dell',21,180);
 COMMIT;
 
-INSERT INTO storage_devices(id, name, typeId, quantity, country, brand, capacity,cost) VALUES
+INSERT INTO storagedevices(id, name, typeId, quantity, country, brand, capacity,cost) VALUES
   (1,'storage1',4,10,'china','seagate',500,50),
   (2,'storage2',4,10,'china','kingston',120,75),
   (3,'storage3',4,10,'china','samsung',1000,60);
 COMMIT;
 
-INSERT INTO peripherals(id, name, typeId, quantity, country, brand, voltage, cost) VALUES
+INSERT INTO peripheraldevices(id, name, typeId, quantity, country, brand, voltage, cost) VALUES
   (1,'p1',5,10,'china','lenovo',220,100),
   (2,'p2',5,10,'china','lenovo',220,100),
   (3,'p3',5,10,'china','lenovo',220,100);

@@ -1,6 +1,6 @@
 package controller;
 
-import abstractController.AbstractGoodstypeController;
+import abstractController.AbstractGoodTypeController;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,7 +19,7 @@ import java.util.Arrays;
 @ActiveProfiles("mysql")
 public class GoodstypeControllerTest {
     @Autowired
-    private AbstractGoodstypeController controller;
+    private AbstractGoodTypeController controller;
 
     @Test
     public void getAll(){

@@ -10,7 +10,7 @@ import javax.persistence.*;
         @NamedQuery(name = TicketInfo.ALL,query = "SELECT t FROM TicketInfo t WHERE t.ticketId=:ticketId ORDER BY t.id")
 })
 @Entity
-@Table(name = "ticketsinfo")
+@Table(name = "ticketInfo")
 public class TicketInfo extends Identification {
     public static final String ALL = "TicketInfo.ALL";
 

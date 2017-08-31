@@ -26,15 +26,15 @@ public class TicketServiceImpl implements TicketService {
     @Autowired
     private TicketInfoDAO ticketInfoDAO;
     @Autowired
-    private InputdeviceDAO inputdeviceDAO;
+    private InputDeviceDAO inputDeviceDAO;
     @Autowired
     private ComponentDAO componentDAO;
     @Autowired
     private MonitorDAO monitorDAO;
     @Autowired
-    private PeripheralDAO peripheralDAO;
+    private PeripheralDeviceDAO peripheralDeviceDAO;
     @Autowired
-    private StoragedeviceDAO storagedeviceDAO;
+    private StorageDeviceDAO storageDeviceDAO;
 
     @Override
     public List<Ticket> getAllTickets() {
@@ -52,12 +52,10 @@ public class TicketServiceImpl implements TicketService {
         LocalDateTime dateTime = LocalDateTime.now();
         double totalCost=0.0;
         List<ProxyTicket> proxyTickets=getProxyTickets(ticketDTOList);
-        logger.warning(">>>>>>>>>>>>>>>>>" +proxyTickets);
         for(ProxyTicket p:proxyTickets) totalCost+=p.cost*p.amount;
-        if(totalCost==0.0) return null;
+        if(proxyTickets.size()==0) return null;
         Ticket ticket=ticketDAO.save(new Ticket(null,dateTime,totalCost));
         for(ProxyTicket p:proxyTickets){
-            logger.warning(">>>>>>>>> "+p);
             ticketInfoDAO.save(new TicketInfo(null,ticket.getId(),p.typeId,p.goodId,p.name,p.amount,p.cost));
             reduceGoodAmount(p.typeId,p.goodId,p.amount);
         }
@@ -74,10 +72,10 @@ public class TicketServiceImpl implements TicketService {
             String name = "";
             double cost = 0.0;
             if (typeId == 1) {
-                Inputdevice inputdevice = inputdeviceDAO.get(goodId);
-                if (inputdevice.getQuantity() < amount) return Collections.emptyList();
-                cost = Discount.inputdeviceWithDiscount(inputdevice).getCost();
-                name = inputdevice.getName();
+                InputDevice inputDevice = inputDeviceDAO.get(goodId);
+                if (inputDevice.getQuantity() < amount) return Collections.emptyList();
+                cost = Discount.inputDeviceWithDiscount(inputDevice).getCost();
+                name = inputDevice.getName();
                 proxyTickets.add(new ProxyTicket(typeId, goodId, amount, name, cost));
             }
             if (typeId == 2) {
@@ -95,17 +93,17 @@ public class TicketServiceImpl implements TicketService {
                 proxyTickets.add(new ProxyTicket(typeId, goodId, amount, name, cost));
             }
             if (typeId == 4) {
-                Storagedevice storagedevice=storagedeviceDAO.get(goodId);
-                if (storagedevice.getQuantity() < amount) return Collections.emptyList();
-                cost = Discount.storagedeviceWithDiscount(storagedevice).getCost();
-                name = storagedevice.getName();
+                StorageDevice storageDevice = storageDeviceDAO.get(goodId);
+                if (storageDevice.getQuantity() < amount) return Collections.emptyList();
+                cost = Discount.storageDeviceWithDiscount(storageDevice).getCost();
+                name = storageDevice.getName();
                 proxyTickets.add(new ProxyTicket(typeId, goodId, amount, name, cost));
             }
             if (typeId == 5) {
-                Peripheria peripheria=peripheralDAO.get(goodId);
-                if (peripheria.getQuantity() < amount) return Collections.emptyList();
-                cost = Discount.peripheralWithDiscount(peripheria).getCost();
-                name = peripheria.getName();
+                PeripheralDevice peripheralDevice = peripheralDeviceDAO.get(goodId);
+                if (peripheralDevice.getQuantity() < amount) return Collections.emptyList();
+                cost = Discount.peripheralDeviceWithDiscount(peripheralDevice).getCost();
+                name = peripheralDevice.getName();
                 proxyTickets.add(new ProxyTicket(typeId, goodId, amount, name, cost));
             }
         }
@@ -114,9 +112,9 @@ public class TicketServiceImpl implements TicketService {
 
     private void reduceGoodAmount(int typeId, int id, int amount) {
         if (typeId == 1) {
-            Inputdevice inputdevice = inputdeviceDAO.get(id);
-            inputdevice.setQuantity(inputdevice.getQuantity() - amount);
-            inputdeviceDAO.save(inputdevice);
+            InputDevice inputDevice = inputDeviceDAO.get(id);
+            inputDevice.setQuantity(inputDevice.getQuantity() - amount);
+            inputDeviceDAO.save(inputDevice);
         }
         if (typeId == 2) {
             Component component=componentDAO.get(id);
@@ -129,14 +127,14 @@ public class TicketServiceImpl implements TicketService {
             monitorDAO.save(monitor);
         }
         if (typeId == 4) {
-            Storagedevice storagedevice=storagedeviceDAO.get(id);
-            storagedevice.setQuantity(storagedevice.getQuantity() - amount);
-            storagedeviceDAO.save(storagedevice);
+            StorageDevice storageDevice = storageDeviceDAO.get(id);
+            storageDevice.setQuantity(storageDevice.getQuantity() - amount);
+            storageDeviceDAO.save(storageDevice);
         }
         if (typeId == 5) {
-            Peripheria peripheria=peripheralDAO.get(id);
-            peripheria.setQuantity(peripheria.getQuantity() - amount);
-            peripheralDAO.save(peripheria);
+            PeripheralDevice peripheralDevice = peripheralDeviceDAO.get(id);
+            peripheralDevice.setQuantity(peripheralDevice.getQuantity() - amount);
+            peripheralDeviceDAO.save(peripheralDevice);
         }
     }
 

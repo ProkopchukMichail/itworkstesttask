@@ -2,8 +2,8 @@ package model;
 
 import javax.persistence.*;
 
-import static model.Peripheria.ALL;
-import static model.Peripheria.DELETE;
+import static model.PeripheralDevice.ALL;
+import static model.PeripheralDevice.DELETE;
 
 
 /**
@@ -11,26 +11,26 @@ import static model.Peripheria.DELETE;
  */
 @SuppressWarnings("JpaQlInspection")
 @NamedQueries({
-        @NamedQuery(name = ALL, query = "SELECT c FROM Peripheria c ORDER BY c.id"),
-        @NamedQuery(name = DELETE, query = "DELETE FROM Peripheria c WHERE c.id=:id")
+        @NamedQuery(name = ALL, query = "SELECT c FROM PeripheralDevice c ORDER BY c.id"),
+        @NamedQuery(name = DELETE, query = "DELETE FROM PeripheralDevice c WHERE c.id=:id")
 })
 @Entity
-@Table(name = "peripherals")
-public class Peripheria extends BaseGood {
-    public static final String ALL="Peripheria.ALL";
-    public static final String DELETE="Peripheria.DELETE";
+@Table(name = "peripheralDevices")
+public class PeripheralDevice extends BaseGood {
+    public static final String ALL="PeripheralDevice.ALL";
+    public static final String DELETE="PeripheralDevice.DELETE";
     @Column(name = "brand")
     private String brand;
     @Column(name = "voltage")
     private Integer voltage;
 
-    public Peripheria(Integer id, String name, Integer typeId, Integer quantity, String country, Double cost, String brand, Integer voltage) {
+    public PeripheralDevice(Integer id, String name, Integer typeId, Integer quantity, String country, Double cost, String brand, Integer voltage) {
         super(id, name, typeId, quantity, country, cost);
         this.brand = brand;
         this.voltage = voltage;
     }
 
-    public Peripheria() {
+    public PeripheralDevice() {
     }
 
     public String getBrand() {
@@ -51,7 +51,7 @@ public class Peripheria extends BaseGood {
 
     @Override
     public String toString() {
-        return "Peripheria{id=" +getId()+
+        return "PeripheralDevice{id=" +getId()+
                 ", name='" + getName() + '\'' +
                 ", typeId=" + getTypeId() +
                 ", quantity=" + getQuantity() +

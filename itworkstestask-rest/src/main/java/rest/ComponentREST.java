@@ -13,7 +13,7 @@ import java.util.List;
 @RestController
 @RequestMapping(value = ComponentREST.REST_URL,produces = MediaType.APPLICATION_JSON_VALUE)
 public class ComponentREST extends AbstractComponentController {
-    public static final String REST_URL=GoodstypeREST.REST_URL+"/components";
+    public static final String REST_URL= GoodTypeREST.REST_URL+"/components";
 
     @GetMapping
     public List<Component> getAll(){

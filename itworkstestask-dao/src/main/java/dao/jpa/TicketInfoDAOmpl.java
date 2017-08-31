@@ -3,7 +3,6 @@ package dao.jpa;
 import dao.TicketInfoDAO;
 import model.TicketInfo;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -13,7 +12,7 @@ import java.util.List;
  * Created by comp on 29.08.2017.
  */
 @Repository
-public class TicketInfoImpl implements TicketInfoDAO {
+public class TicketInfoDAOmpl implements TicketInfoDAO {
     @PersistenceContext
     private EntityManager entityManager;
 

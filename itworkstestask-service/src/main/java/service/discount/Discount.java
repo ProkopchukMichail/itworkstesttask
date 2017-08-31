@@ -30,21 +30,21 @@ public class Discount {
         return component;
     }
 
-    public static List<Peripheria> peripheralsWithDiscount(List<Peripheria> peripherals){
-        List<Peripheria> peripheriaList=new ArrayList<Peripheria>(peripherals);
+    public static List<PeripheralDevice> peripheralDevicesWithDiscount(List<PeripheralDevice> peripherals){
+        List<PeripheralDevice> peripheralDeviceList =new ArrayList<PeripheralDevice>(peripherals);
         double discount=1;
         if(isDiscounted(4,7)) discount-=OTHER_DISCOUNT;
-        for(Peripheria p:peripheriaList){
+        for(PeripheralDevice p: peripheralDeviceList){
             p.setCost(round2SecondDec(p.getCost()*discount));
         }
-        return peripheriaList;
+        return peripheralDeviceList;
     }
 
-    public static Peripheria peripheralWithDiscount(Peripheria peripheria){
+    public static PeripheralDevice peripheralDeviceWithDiscount(PeripheralDevice peripheralDevice){
         double discount=1;
         if(isDiscounted(4,7)) discount-=OTHER_DISCOUNT;
-        peripheria.setCost(round2SecondDec(peripheria.getCost()*discount));
-        return peripheria;
+        peripheralDevice.setCost(round2SecondDec(peripheralDevice.getCost()*discount));
+        return peripheralDevice;
     }
 
     public static List<Monitor> monitorsWithDiscount(List<Monitor> monitors){
@@ -66,29 +66,29 @@ public class Discount {
         return monitor;
     }
 
-    public static List<Inputdevice> inputdevicesWithDiscount(List<Inputdevice> inputdevices){
-        List<Inputdevice> inputdeviceList=new ArrayList<Inputdevice>(inputdevices);
+    public static List<InputDevice> inputDevicesWithDiscount(List<InputDevice> inputDevices){
+        List<InputDevice> inputDeviceList =new ArrayList<InputDevice>(inputDevices);
         if(isDiscounted(5,7)){
-            for (Inputdevice i:inputdeviceList){
+            for (InputDevice i: inputDeviceList){
                 double discount=1-INPUT_DEVICE_DISCOUNT;
                 i.setCost(round2SecondDec(i.getCost()*discount));
             }
         }
-        return inputdeviceList;
+        return inputDeviceList;
     }
 
-    public static Inputdevice inputdeviceWithDiscount(Inputdevice inputdevice){
+    public static InputDevice inputDeviceWithDiscount(InputDevice inputDevice){
         if(isDiscounted(5,7)){
             double discount=1-INPUT_DEVICE_DISCOUNT;
-            inputdevice.setCost(round2SecondDec(inputdevice.getCost()*discount));
+            inputDevice.setCost(round2SecondDec(inputDevice.getCost()*discount));
         }
-        return inputdevice;
+        return inputDevice;
     }
 
-    public static List<Storagedevice> storagedevicesWithDiscount(List<Storagedevice> storagedevices){
-        List<Storagedevice> storagedeviceList=new ArrayList<Storagedevice>(storagedevices);
+    public static List<StorageDevice> storageDevicesWithDiscount(List<StorageDevice> storageDevices){
+        List<StorageDevice> storageDeviceList =new ArrayList<StorageDevice>(storageDevices);
         if(isDiscounted(4,5)){
-            for(Storagedevice s:storagedeviceList){
+            for(StorageDevice s: storageDeviceList){
                 double discountRatio=1;
                 String brand=s.getBrand();
                 if(brand.equalsIgnoreCase("seagate")) discountRatio=1;
@@ -98,20 +98,20 @@ public class Discount {
                 s.setCost(round2SecondDec(s.getCost()*discount));
             }
         }
-        return storagedeviceList;
+        return storageDeviceList;
     }
 
-    public static Storagedevice storagedeviceWithDiscount(Storagedevice storagedevice){
+    public static StorageDevice storageDeviceWithDiscount(StorageDevice storageDevice){
         if(isDiscounted(4,5)){
             double discountRatio=1;
-            String brand=storagedevice.getBrand();
+            String brand= storageDevice.getBrand();
             if(brand.equalsIgnoreCase("seagate")) discountRatio=1;
             else if(brand.equalsIgnoreCase("kingston")) discountRatio=2;
             else if(brand.equalsIgnoreCase("samsung")) discountRatio=3;
             double discount=1-0.1/discountRatio;
-            storagedevice.setCost(round2SecondDec(storagedevice.getCost()*discount));
+            storageDevice.setCost(round2SecondDec(storageDevice.getCost()*discount));
         }
-        return storagedevice;
+        return storageDevice;
     }
 
     private static boolean isDiscounted(int min,int max){

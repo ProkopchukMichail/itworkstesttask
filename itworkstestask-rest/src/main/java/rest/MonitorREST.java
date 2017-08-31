@@ -13,7 +13,7 @@ import java.util.List;
 @RestController
 @RequestMapping(value = MonitorREST.REST_URL, produces = MediaType.APPLICATION_JSON_VALUE)
 public class MonitorREST extends AbstractMonitorController {
-    public static final String REST_URL=GoodstypeREST.REST_URL+"/monitors";
+    public static final String REST_URL= GoodTypeREST.REST_URL+"/monitors";
 
     @GetMapping
     public List<Monitor> getAll(){

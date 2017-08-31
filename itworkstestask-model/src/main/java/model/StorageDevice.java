@@ -2,8 +2,8 @@ package model;
 
 import javax.persistence.*;
 
-import static model.Storagedevice.ALL;
-import static model.Storagedevice.DELETE;
+import static model.StorageDevice.ALL;
+import static model.StorageDevice.DELETE;
 
 
 /**
@@ -11,26 +11,26 @@ import static model.Storagedevice.DELETE;
  */
 @SuppressWarnings("JpaQlInspection")
 @NamedQueries({
-        @NamedQuery(name = ALL, query = "SELECT c FROM Storagedevice c ORDER BY c.id"),
-        @NamedQuery(name = DELETE, query = "DELETE FROM Storagedevice c WHERE c.id=:id")
+        @NamedQuery(name = ALL, query = "SELECT c FROM StorageDevice c ORDER BY c.id"),
+        @NamedQuery(name = DELETE, query = "DELETE FROM StorageDevice c WHERE c.id=:id")
 })
 @Entity
-@Table(name = "storage_devices")
-public class Storagedevice extends BaseGood {
-    public static final String ALL="Storagedevice.ALL";
-    public static final String DELETE="Storagedevice.DELETE";
+@Table(name = "storageDevices")
+public class StorageDevice extends BaseGood {
+    public static final String ALL="StorageDevice.ALL";
+    public static final String DELETE="StorageDevice.DELETE";
     @Column(name = "brand")
     private String brand;
     @Column(name = "capacity")
     private Integer capacity;
 
-    public Storagedevice(Integer id, String name, Integer typeId, Integer quantity, String country, Double cost, String brand, Integer capacity) {
+    public StorageDevice(Integer id, String name, Integer typeId, Integer quantity, String country, Double cost, String brand, Integer capacity) {
         super(id, name, typeId, quantity, country, cost);
         this.brand = brand;
         this.capacity = capacity;
     }
 
-    public Storagedevice() {
+    public StorageDevice() {
     }
 
     public String getBrand() {
@@ -51,7 +51,7 @@ public class Storagedevice extends BaseGood {
 
     @Override
     public String toString() {
-        return "Storagedevice{id=" +getId()+
+        return "StorageDevice{id=" +getId()+
                 ", name='" + getName() + '\'' +
                 ", typeId=" + getTypeId() +
                 ", quantity=" + getQuantity() +

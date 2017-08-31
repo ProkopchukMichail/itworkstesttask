@@ -1,6 +1,6 @@
 package dao;
 
-import model.Goodtype;
+import model.GoodType;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,12 +17,12 @@ import java.util.Arrays;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:spring-app.xml")
 @ActiveProfiles("mysql")
-public class GoodstypeDAOTest {
+public class GoodTypeDAOTest {
     @Autowired
-    GoodstypeDAO goodstypeDAO;
+    GoodTypeDAO goodTypeDAO;
 
     @Test
     public void getAll(){
-        Assert.assertEquals(goodstypeDAO.getAll(), Arrays.asList(new Goodtype(1,"qwe")));
+        Assert.assertEquals(goodTypeDAO.getAll(), Arrays.asList(new GoodType(1,"qwe")));
     }
 }

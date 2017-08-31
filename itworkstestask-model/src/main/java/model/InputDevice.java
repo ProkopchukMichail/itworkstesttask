@@ -2,8 +2,8 @@ package model;
 
 import javax.persistence.*;
 
-import static model.Inputdevice.ALL;
-import static model.Inputdevice.DELETE;
+import static model.InputDevice.ALL;
+import static model.InputDevice.DELETE;
 
 
 /**
@@ -11,26 +11,26 @@ import static model.Inputdevice.DELETE;
  */
 @SuppressWarnings("JpaQlInspection")
 @NamedQueries({
-        @NamedQuery(name = ALL, query = "SELECT i FROM Inputdevice i ORDER BY i.id"),
-        @NamedQuery(name = DELETE, query = "DELETE FROM Inputdevice i WHERE i.id=:id")
+        @NamedQuery(name = ALL, query = "SELECT i FROM InputDevice i ORDER BY i.id"),
+        @NamedQuery(name = DELETE, query = "DELETE FROM InputDevice i WHERE i.id=:id")
 })
 @Entity
-@Table(name = "input_devices")
-public class Inputdevice extends BaseGood{
-    public static final String ALL="Inputdevice.ALL";
-    public static final String DELETE="Inputdevice.DELETE";
+@Table(name = "inputDevices")
+public class InputDevice extends BaseGood{
+    public static final String ALL="InputDevice.ALL";
+    public static final String DELETE="InputDevice.DELETE";
     @Column(name = "color")
     private String color;
     @Column(name = "illumination")
     private boolean illumination;
 
-    public Inputdevice(Integer id, String name, Integer typeId, Integer quantity, String country, Double cost, String color, boolean illumination) {
+    public InputDevice(Integer id, String name, Integer typeId, Integer quantity, String country, Double cost, String color, boolean illumination) {
         super(id, name, typeId, quantity, country, cost);
         this.color = color;
         this.illumination = illumination;
     }
 
-    public Inputdevice() {
+    public InputDevice() {
     }
 
     public String getColor() {
@@ -51,7 +51,7 @@ public class Inputdevice extends BaseGood{
 
     @Override
     public String toString() {
-        return "Inputdevice{id=" +getId()+
+        return "InputDevice{id=" +getId()+
                 ", name='" + getName() + '\'' +
                 ", typeId=" + getTypeId() +
                 ", quantity=" + getQuantity() +

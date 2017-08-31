@@ -3,7 +3,6 @@ package dao.jpa;
 import dao.MonitorDAO;
 import model.Monitor;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -17,10 +16,12 @@ public class MonitorDAOImpl implements MonitorDAO {
     @PersistenceContext
     private EntityManager entityManager;
 
+    @Override
     public List<Monitor> getAll() {
         return entityManager.createNamedQuery(Monitor.ALL,Monitor.class).getResultList();
     }
 
+    @Override
     public Monitor save(Monitor monitor) {
         if(monitor.isNew()) {
             entityManager.persist(monitor);
@@ -33,6 +34,7 @@ public class MonitorDAOImpl implements MonitorDAO {
         return entityManager.find(Monitor.class,id);
     }
 
+    @Override
     public boolean delete(int id) {
         return entityManager.createNamedQuery(Monitor.DELETE).setParameter("id",id).executeUpdate()!=0;
     }
