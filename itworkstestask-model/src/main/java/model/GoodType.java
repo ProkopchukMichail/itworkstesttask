@@ -21,6 +21,7 @@ public class GoodType extends Identification {
         this.typeName = typeName;
     }
 
+
     public GoodType() {
     }
 
