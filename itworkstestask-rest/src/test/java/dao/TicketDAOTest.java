@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.transaction.annotation.Transactional;
 import service.TicketService;
 
 import java.time.LocalDateTime;
@@ -38,16 +39,17 @@ public class TicketDAOTest {
                         new TicketInfo(2,1,1,2,"qwer",234.05)));
     }
 
-    @Test
-    public void save() {
-        Ticket ticket = new Ticket(4, LocalDateTime.now(), 100.0);
-        ticketService.saveTicket(ticket);
-        Assert.assertEquals(ticketDAO.getAll(), null);
-    }
+
     @Test
     public void saveTicketInfo(){
         TicketInfo ticketInfo=new TicketInfo(5,1,1,1,"qwe",123.0);
         ticketService.saveTicketInfo(ticketInfo);
         Assert.assertEquals(ticketService.getAllTicketInfo(1),null);
     }*/
+    @Test
+    public void save() {
+        Ticket ticket = new Ticket( null,LocalDateTime.now(), 100.0);
+        ticket=ticketDAO.save(ticket);
+        Assert.assertEquals(ticket,"qwe");
+    }
 }

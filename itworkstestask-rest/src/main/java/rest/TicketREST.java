@@ -2,13 +2,12 @@ package rest;
 
 import abstractController.AbstractTicketController;
 import model.Ticket;
+import model.TicketDTO;
 import model.TicketInfo;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -27,5 +26,10 @@ public class TicketREST extends AbstractTicketController{
     @GetMapping("/{ticketId}")
     public List<TicketInfo> getAllTicketInfo(@PathVariable int ticketId){
         return super.getAllTicketInfo(ticketId);
+    }
+
+    @PostMapping(value = "/pay", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public List<TicketDTO> pay(@RequestBody List<TicketDTO> ticketDTOList){
+        return super.payAllGood(ticketDTOList);
     }
 }

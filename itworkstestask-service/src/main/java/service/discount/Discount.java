@@ -23,6 +23,13 @@ public class Discount {
         return componentList;
     }
 
+    public static Component componentWithDiscount(Component component){
+        double discount=1;
+        if(isDiscounted(1,3)) discount-=OTHER_DISCOUNT;
+        component.setCost(round2SecondDec(component.getCost()*discount));
+        return component;
+    }
+
     public static List<Peripheria> peripheralsWithDiscount(List<Peripheria> peripherals){
         List<Peripheria> peripheriaList=new ArrayList<Peripheria>(peripherals);
         double discount=1;
@@ -31,6 +38,13 @@ public class Discount {
             p.setCost(round2SecondDec(p.getCost()*discount));
         }
         return peripheriaList;
+    }
+
+    public static Peripheria peripheralWithDiscount(Peripheria peripheria){
+        double discount=1;
+        if(isDiscounted(4,7)) discount-=OTHER_DISCOUNT;
+        peripheria.setCost(round2SecondDec(peripheria.getCost()*discount));
+        return peripheria;
     }
 
     public static List<Monitor> monitorsWithDiscount(List<Monitor> monitors){
@@ -44,6 +58,14 @@ public class Discount {
         return monitorList;
     }
 
+    public static Monitor monitorWithDiscount(Monitor monitor){
+        if(isDiscounted(4,7)){
+            double discount=(1-monitor.getSize()/100);
+            monitor.setCost(round2SecondDec(monitor.getCost()*discount));
+        }
+        return monitor;
+    }
+
     public static List<Inputdevice> inputdevicesWithDiscount(List<Inputdevice> inputdevices){
         List<Inputdevice> inputdeviceList=new ArrayList<Inputdevice>(inputdevices);
         if(isDiscounted(5,7)){
@@ -53,6 +75,14 @@ public class Discount {
             }
         }
         return inputdeviceList;
+    }
+
+    public static Inputdevice inputdeviceWithDiscount(Inputdevice inputdevice){
+        if(isDiscounted(5,7)){
+            double discount=1-INPUT_DEVICE_DISCOUNT;
+            inputdevice.setCost(round2SecondDec(inputdevice.getCost()*discount));
+        }
+        return inputdevice;
     }
 
     public static List<Storagedevice> storagedevicesWithDiscount(List<Storagedevice> storagedevices){
@@ -69,6 +99,19 @@ public class Discount {
             }
         }
         return storagedeviceList;
+    }
+
+    public static Storagedevice storagedeviceWithDiscount(Storagedevice storagedevice){
+        if(isDiscounted(4,5)){
+            double discountRatio=1;
+            String brand=storagedevice.getBrand();
+            if(brand.equalsIgnoreCase("seagate")) discountRatio=1;
+            else if(brand.equalsIgnoreCase("kingston")) discountRatio=2;
+            else if(brand.equalsIgnoreCase("samsung")) discountRatio=3;
+            double discount=1-0.1/discountRatio;
+            storagedevice.setCost(round2SecondDec(storagedevice.getCost()*discount));
+        }
+        return storagedevice;
     }
 
     private static boolean isDiscounted(int min,int max){

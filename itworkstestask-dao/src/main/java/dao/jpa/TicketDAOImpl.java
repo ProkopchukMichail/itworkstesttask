@@ -3,6 +3,7 @@ package dao.jpa;
 import dao.TicketDAO;
 import model.Ticket;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -25,8 +26,26 @@ public class TicketDAOImpl implements TicketDAO {
     public Ticket save(Ticket ticket) {
         if(ticket.isNew()){
             entityManager.persist(ticket);
+            entityManager.flush();
             return ticket;
         }
-        else return entityManager.merge(ticket);
+        else {
+            Ticket newTicket = entityManager.merge(ticket);
+            return newTicket;
+        }
     }
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+

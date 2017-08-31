@@ -9,5 +9,5 @@ import java.util.List;
  */
 public interface TicketInfoDAO {
     List<TicketInfo> getAll(int ticketId);
-    void save(TicketInfo ticketInfo);
+    TicketInfo save(TicketInfo ticketInfo);
 }

@@ -1,12 +1,13 @@
 USE itworkstesttask;
-DELETE FROM goodstypes;
+
 DELETE FROM input_devices;
 DELETE FROM components;
 DELETE FROM monitors;
 DELETE FROM storage_devices;
 DELETE FROM peripherals;
-DELETE FROM tickets;
+DELETE FROM goodstypes;
 DELETE FROM ticketsinfo;
+DELETE FROM tickets;
 
 COMMIT;
 

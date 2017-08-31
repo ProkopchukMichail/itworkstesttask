@@ -99,7 +99,7 @@ function loadGoodsPage(config) {
             });
 
             $(".btn-good-create").click(function () {
-                loadGoodPageSave({ typeId: config.id, id: 0 }, config);
+                loadGoodPageSave({ typeId: config.id, id: null }, config);
             });
 
             $(".btn-good-update").click(function () {
@@ -233,13 +233,17 @@ function loadCartPage() {
             });
 
             $.ajax({
-                url: "TODO",
+                url: API_PATH+"tickets/pay",
                 type: "POST",
                 data: JSON.stringify(dto),
                 dataType: "json",
                 contentType: "application/json",
                 success: function() {
                     alert("Thank you!");
+                    loadGoodTypesPage();
+                },
+                error: function () {
+                    alert("You cant pay this goods");
                     loadGoodTypesPage();
                 }
             });

@@ -12,6 +12,7 @@ import java.io.Serializable;
 @MappedSuperclass
 public abstract class Identification implements Serializable {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     public Identification(Integer id) {

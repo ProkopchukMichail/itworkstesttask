@@ -25,4 +25,5 @@ public class GoodstypeControllerTest {
     public void getAll(){
         Assert.assertEquals(controller.getAll(), Arrays.asList());
     }
+
 }
