@@ -4,7 +4,7 @@
 itworkstesttask-rest/src/main/resources/db
 
 # Maven build:
-mvn -install
+mvn install
 
 # Deploy script 
 deploy.bat
