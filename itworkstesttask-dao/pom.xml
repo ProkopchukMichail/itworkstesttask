@@ -2,22 +2,24 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
     <modelVersion>4.0.0</modelVersion>
+
     <parent>
-        <artifactId>itworkstestask</artifactId>
-        <groupId>itworkstestask</groupId>
+        <groupId>itworkstesttask</groupId>
+        <artifactId>itworkstesttask</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <groupId>itworkstestask-dao</groupId>
-    <artifactId>itworkstestask-dao</artifactId>
+    <groupId>itworkstesttask-dao</groupId>
+    <artifactId>itworkstesttask-dao</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <dependencies>
         <dependency>
-            <groupId>itworkstestask-model</groupId>
-            <artifactId>itworkstestask-model</artifactId>
+            <groupId>itworkstesttask-model</groupId>
+            <artifactId>itworkstesttask-model</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
         <dependency>

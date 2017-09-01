@@ -3,20 +3,20 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>itworkstestask</artifactId>
-        <groupId>itworkstestask</groupId>
+        <artifactId>itworkstesttask</artifactId>
+        <groupId>itworkstesttask</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>itworkstestask-rest</groupId>
-    <artifactId>itworkstestask-rest</artifactId>
+    <groupId>itworkstesttask-rest</groupId>
+    <artifactId>itworkstesttask-rest</artifactId>
     <packaging>war</packaging>
 
     <dependencies>
         <dependency>
-            <groupId>itworkstestask-service</groupId>
-            <artifactId>itworkstestask-service</artifactId>
+            <groupId>itworkstesttask-service</groupId>
+            <artifactId>itworkstesttask-service</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
         <dependency>
@@ -85,4 +85,5 @@
             </dependencies>
         </profile>
     </profiles>
+    
 </project>

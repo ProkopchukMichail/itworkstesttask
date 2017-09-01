@@ -4,16 +4,21 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>itworkstestask</groupId>
-    <artifactId>itworkstestask</artifactId>
+    <groupId>itworkstesttask</groupId>
+    <artifactId>itworkstesttask</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
 
+    <properties>
+        <java.version>1.8</java.version>
+    </properties>
+
     <modules>
-        <module>itworkstestask-dao</module>
-        <module>itworkstestask-model</module>
-        <module>itworkstestask-service</module>
-        <module>itworkstestask-rest</module>
-        <module>itworkstestask-web</module>
+        <module>itworkstesttask-model</module>
+        <module>itworkstesttask-dao</module>
+        <module>itworkstesttask-service</module>
+        <module>itworkstesttask-rest</module>
+        <module>itworkstesttask-web</module>
     </modules>
+    
 </project>
