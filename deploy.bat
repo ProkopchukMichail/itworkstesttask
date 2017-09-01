@@ -1,4 +1,4 @@
-cd mvn
+cd mvn install
 cd %CATALINA_HOME%\webapps
 DEL %CATALINA_HOME%\webapps\itworkstesttask-rest-1.0-SNAPSHOT.war
 rd %CATALINA_HOME%\webapps\itworkstesttask-rest-1.0-SNAPSHOT /s /q
