@@ -14,14 +14,14 @@ DROP TABLE IF EXISTS tickets;
 
 CREATE TABLE goodTypes
 (
-  id INT(4) PRIMARY KEY AUTO_INCREMENT,
+  goodId INT(4) PRIMARY KEY AUTO_INCREMENT,
   typeName VARCHAR(50) NOT NULL UNIQUE
 ) ENGINE = InnoDB;
 
 
 CREATE TABLE inputDevices
 (
-  id INT(11) PRIMARY KEY AUTO_INCREMENT,
+  goodId INT(11) PRIMARY KEY AUTO_INCREMENT,
   name VARCHAR(50),
   typeId INT(4),
   quantity INT(5),
@@ -29,12 +29,12 @@ CREATE TABLE inputDevices
   color VARCHAR(20) DEFAULT 'Black',
   illumination BOOLEAN DEFAULT FALSE,
   cost FLOAT(6),
-  CONSTRAINT FK_1 FOREIGN KEY (typeId) REFERENCES goodTypes(id)
+  CONSTRAINT FK_1 FOREIGN KEY (typeId) REFERENCES goodTypes(goodId)
 ) ENGINE = InnoDB;
 
 CREATE TABLE components
 (
-  id INT(11) PRIMARY KEY AUTO_INCREMENT,
+  goodId INT(11) PRIMARY KEY AUTO_INCREMENT,
   name VARCHAR(50),
   typeId INT(4),
   quantity INT(5),
@@ -42,12 +42,12 @@ CREATE TABLE components
   brand VARCHAR(50),
   weight INT(10),
   cost FLOAT(6),
-  CONSTRAINT FK_2 FOREIGN KEY (typeId) REFERENCES goodTypes(id)
+  CONSTRAINT FK_2 FOREIGN KEY (typeId) REFERENCES goodTypes(goodId)
 ) ENGINE = InnoDB;
 
 CREATE TABLE storageDevices
 (
-  id INT(11) PRIMARY KEY AUTO_INCREMENT,
+  goodId INT(11) PRIMARY KEY AUTO_INCREMENT,
   name VARCHAR(50),
   typeId INT(4),
   quantity INT(5),
@@ -55,12 +55,12 @@ CREATE TABLE storageDevices
   brand VARCHAR(50),
   capacity INT(6),
   cost FLOAT(6),
-  CONSTRAINT FK_3 FOREIGN KEY (typeId) REFERENCES goodTypes(id)
+  CONSTRAINT FK_3 FOREIGN KEY (typeId) REFERENCES goodTypes(goodId)
 ) ENGINE = InnoDB;
 
 CREATE TABLE monitors
 (
-  id INT(11) PRIMARY KEY AUTO_INCREMENT,
+  goodId INT(11) PRIMARY KEY AUTO_INCREMENT,
   name VARCHAR(50),
   typeId INT(4),
   quantity INT(5),
@@ -68,12 +68,12 @@ CREATE TABLE monitors
   brand VARCHAR(50),
   size FLOAT(6),
   cost FLOAT(6),
-  CONSTRAINT FK_4 FOREIGN KEY (typeId) REFERENCES goodTypes(id)
+  CONSTRAINT FK_4 FOREIGN KEY (typeId) REFERENCES goodTypes(goodId)
 ) ENGINE = InnoDB;
 
 CREATE TABLE peripheralDevices
 (
-  id INT(11) PRIMARY KEY AUTO_INCREMENT,
+  goodId INT(11) PRIMARY KEY AUTO_INCREMENT,
   name VARCHAR(50),
   typeId INT(4),
   quantity INT(5),
@@ -81,26 +81,26 @@ CREATE TABLE peripheralDevices
   brand VARCHAR(50),
   voltage INT(5),
   cost FLOAT(6),
-  CONSTRAINT FK_5 FOREIGN KEY (typeId) REFERENCES goodTypes(id)
+  CONSTRAINT FK_5 FOREIGN KEY (typeId) REFERENCES goodTypes(goodId)
 ) ENGINE = InnoDB;
 
 CREATE TABLE tickets
 (
-  id INT(11) PRIMARY KEY AUTO_INCREMENT,
+  goodId INT(11) PRIMARY KEY AUTO_INCREMENT,
   dateAndTime DATETIME,
   summ FLOAT(8)
 ) ENGINE = InnoDB;
 
 CREATE TABLE ticketsInfo
 (
-  id int(11) PRIMARY KEY AUTO_INCREMENT,
+  goodId int(11) PRIMARY KEY AUTO_INCREMENT,
   ticketId int(11),
   typeId int(4),
   goodId int(11),
   name VARCHAR(50),
   amount int(4),
   cost FLOAT(6),
-  CONSTRAINT FK_6 FOREIGN KEY (ticketId) REFERENCES tickets(id)
+  CONSTRAINT FK_6 FOREIGN KEY (ticketId) REFERENCES tickets(goodId)
 ) ENGINE =InnoDB;
 
 

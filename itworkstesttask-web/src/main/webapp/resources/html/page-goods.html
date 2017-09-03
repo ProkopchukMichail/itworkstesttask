@@ -1,6 +1,6 @@
-<button type="button" id="btn-cancel">Cancel</button>
+<button type="button" goodId="btn-cancel">Cancel</button>
 <button type="button" class="btn-good-create">Create</button>
-<button type="button" id="btn-cart">Cart</button>
+<button type="button" goodId="btn-cart">Cart</button>
 <table>
     <tr>
         <th>Model</th>
@@ -20,9 +20,9 @@
         <td><%- good[field] %></td>
         <% }); %>
         <td><%- good.cost %></td>
-        <td><button type="button" data-id="<%- good.id %>" class="btn-good-update">Update</button></td>
-        <td><button type="button" data-id="<%- good.id %>" class="btn-good-delete">Delete</button></td>
-        <td><button type="button" data-id="<%- good.id %>" class="btn-good-add-to-cart">Add to cart</button></td>
+        <td><button type="button" data-goodId="<%- good.goodId %>" class="btn-good-update">Update</button></td>
+        <td><button type="button" data-goodId="<%- good.goodId %>" class="btn-good-delete">Delete</button></td>
+        <td><button type="button" data-goodId="<%- good.goodId %>" class="btn-good-add-to-cart">Add to cart</button></td>
     </tr>
     <% }); %>
 </table>

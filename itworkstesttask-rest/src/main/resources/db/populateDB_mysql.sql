@@ -11,7 +11,7 @@ DELETE FROM tickets;
 
 COMMIT;
 
-INSERT INTO goodTypes(id, typeName) VALUES
+INSERT INTO goodTypes(goodId, typeName) VALUES
   (1,'Input device'),
   (2,'Component'),
   (3,'Monitor'),
@@ -20,7 +20,7 @@ INSERT INTO goodTypes(id, typeName) VALUES
 COMMIT;
 
 
-INSERT INTO inputdevices(id, name, typeId, quantity, country, color, illumination,cost) VALUES
+INSERT INTO inputdevices(goodId, name, typeId, quantity, country, color, illumination,cost) VALUES
   (1,'input1',1,4,'china','pink',FALSE,30 ),
   (2,'input2',1,8,'china','black',FALSE,40 ),
   (3,'input3',1,2,'usa','red',TRUE,80),
@@ -28,7 +28,7 @@ INSERT INTO inputdevices(id, name, typeId, quantity, country, color, illuminatio
   (5,'input3',1,2,'usa','red',TRUE,80);
 COMMIT;
 
-INSERT INTO components(id, name, typeId, quantity, country, brand, weight,cost) VALUES
+INSERT INTO components(goodId, name, typeId, quantity, country, brand, weight,cost) VALUES
   (1,'component1',2,3,'china','intel',250,15.6),
   (2,'component2',2,7,'usa','amd',180,50),
   (3,'component3',2,30,'china','nvidia',150,35),
@@ -36,31 +36,31 @@ INSERT INTO components(id, name, typeId, quantity, country, brand, weight,cost) 
   (5,'component5',2,30,'china','nvidia',150,35);
 COMMIT;
 
-INSERT INTO monitors(id, name, typeId, quantity, country, brand, size,cost) VALUES
+INSERT INTO monitors(goodId, name, typeId, quantity, country, brand, size,cost) VALUES
   (1,'monitor1',3,10,'china','samsung',15.6,100),
   (2,'monitor2',3,10,'china','samsung',19,130),
   (3,'monitor3',3,10,'china','dell',21,180);
 COMMIT;
 
-INSERT INTO storagedevices(id, name, typeId, quantity, country, brand, capacity,cost) VALUES
+INSERT INTO storagedevices(goodId, name, typeId, quantity, country, brand, capacity,cost) VALUES
   (1,'storage1',4,10,'china','seagate',500,50),
   (2,'storage2',4,10,'china','kingston',120,75),
   (3,'storage3',4,10,'china','samsung',1000,60);
 COMMIT;
 
-INSERT INTO peripheraldevices(id, name, typeId, quantity, country, brand, voltage, cost) VALUES
+INSERT INTO peripheraldevices(goodId, name, typeId, quantity, country, brand, voltage, cost) VALUES
   (1,'p1',5,10,'china','lenovo',220,100),
   (2,'p2',5,10,'china','lenovo',220,100),
   (3,'p3',5,10,'china','lenovo',220,100);
 COMMIT;
 
-INSERT INTO tickets(id,dateAndTime, summ) VALUES
+INSERT INTO tickets(goodId,dateAndTime, summ) VALUES
   (1,now(),100),
   (2,now(),35),
   (3,now(),150);
 COMMIT;
 
-INSERT INTO ticketsinfo(id, ticketId, typeId, goodId, name, amount, cost) VALUES
+INSERT INTO ticketsinfo(goodId, ticketId, typeId, goodId, name, amount, cost) VALUES
   (1,1,5,1,'p1',1,100),
   (2,2,2,3,'component3',2,35),
   (3,3,5,3,'p3',1,100),

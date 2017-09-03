@@ -1,5 +1,6 @@
 package dao;
 
+import dao.sql.GoodWithSoldAmount;
 import model.GoodType;
 
 import java.util.List;
@@ -10,4 +11,5 @@ import java.util.List;
 public interface SqlDAO {
 
     List<GoodType> getGoodTypesWithMoreThan5Models();
+    List<GoodWithSoldAmount> getGoodsWithSoldAmount();
 }

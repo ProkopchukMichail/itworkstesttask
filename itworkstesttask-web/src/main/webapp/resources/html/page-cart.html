@@ -17,6 +17,6 @@
 
 <p>Total ticket cost: <%= _.reduce(cart, function(acc, item){ return acc + item.cost * item.amount; }, 0) %></p>
 
-<button type="button" id="btn-pay" <% if (!cart.length) { %> disabled <% } %> >Pay</button>
-<button type="button" id="btn-clean-cart" <% if (!cart.length) { %> disabled <% } %> >Clean cart</button>
-<button type="button" id="btn-cancel">Cancel</button>
+<button type="button" goodId="btn-pay" <% if (!cart.length) { %> disabled <% } %> >Pay</button>
+<button type="button" goodId="btn-clean-cart" <% if (!cart.length) { %> disabled <% } %> >Clean cart</button>
+<button type="button" goodId="btn-cancel">Cancel</button>

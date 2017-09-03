@@ -16,6 +16,7 @@ import java.util.List;
 @Repository
 public class SqlDAOImpl implements SqlDAO {
     private static final RowMapper ROW_MAPPER= BeanPropertyRowMapper.newInstance(GoodType.class);
+    private static final RowMapper ROW_MAPPER2= BeanPropertyRowMapper.newInstance(GoodWithSoldAmount.class);
     private JdbcTemplate jdbcTemplate;
 
     @Autowired
@@ -36,5 +37,11 @@ public class SqlDAOImpl implements SqlDAO {
                         "SELECT COUNT(x.id) AS cnt,goodtypes.typeName AS typeName, x.typeId AS id FROM peripheraldevices AS x JOIN goodtypes WHERE goodtypes.id=x.typeId " +
                         ") y WHERE y.cnt>=5 ORDER BY y.id"
                 ,ROW_MAPPER);
+    }
+
+    @Override
+    public List<GoodWithSoldAmount> getGoodsWithSoldAmount() {
+        return jdbcTemplate.query("SELECT typeId, goodId, name, SUM(amount) AS amount FROM ticketsinfo GROUP BY typeId,goodId"
+                ,ROW_MAPPER2);
     }
 }

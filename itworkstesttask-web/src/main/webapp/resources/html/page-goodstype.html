@@ -1,12 +1,12 @@
-<button type="button" id="btn-cart">Cart</button>
-<button type="button" id="btn-tickets">Tickets</button>
+<button type="button" goodId="btn-cart">Cart</button>
+<button type="button" goodId="btn-tickets">Tickets</button>
 <table>
     <tr>
         <th>Category</th>
     </tr>
     <% _.each(goodstype, function(type) { %>
         <tr>
-            <td><a href="javascript:void(0)" data-id="<%- type.id %>" class="btn-goodstype-select"><%- type.typeName %></a></td>
+            <td><a href="javascript:void(0)" data-goodId="<%- type.goodId %>" class="btn-goodstype-select"><%- type.typeName %></a></td>
         </tr>
     <% }); %>
 </table>

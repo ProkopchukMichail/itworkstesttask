@@ -23,4 +23,9 @@ public class SqlDAOtest {
     public void getGoodTypesWithMoreThan5ModelsTest(){
         Assert.assertEquals(sqlDAO.getGoodTypesWithMoreThan5Models(), Arrays.asList(new GoodType(1,"Input device"), new GoodType(2, "Component")));
     }
+
+    @Test
+    public void getGoodsWithSoldAmountTest(){
+        Assert.assertEquals(sqlDAO.getGoodsWithSoldAmount(),Arrays.asList("qwe"));
+    }
 }
