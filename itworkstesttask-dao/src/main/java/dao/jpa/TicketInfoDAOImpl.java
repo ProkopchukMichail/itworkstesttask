@@ -12,7 +12,7 @@ import java.util.List;
  * Created by comp on 29.08.2017.
  */
 @Repository
-public class TicketInfoDAOmpl implements TicketInfoDAO {
+public class TicketInfoDAOImpl implements TicketInfoDAO {
     @PersistenceContext
     private EntityManager entityManager;
 

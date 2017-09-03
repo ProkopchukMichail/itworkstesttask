@@ -16,8 +16,8 @@
 
     <dependencies>
         <dependency>
-            <groupId>itworkstestask-dao</groupId>
-            <artifactId>itworkstestask-dao</artifactId>
+            <groupId>itworkstesttask-dao</groupId>
+            <artifactId>itworkstesttask-dao</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
