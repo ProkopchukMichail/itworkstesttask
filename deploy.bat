@@ -8,3 +8,4 @@ move %CD%\\itworkstesttask-rest\target\itworkstesttask-rest-1.0-SNAPSHOT.war %CA
 move %CD%\\itworkstesttask-web\target\itworkstesttask-web-1.0-SNAPSHOT.war %CATALINA_HOME%\webapps
 cd %CATALINA_HOME%\bin
 %CATALINA_HOME%\bin\startup.bat
+cmd /k

@@ -1,3 +1,4 @@
+import dao.ComponentDAO;
 import dao.SqlDAO;
 import model.GoodType;
 import org.junit.Assert;
@@ -19,9 +20,14 @@ public class SqlDAOtest {
     @Autowired
     private SqlDAO sqlDAO;
 
+    @Autowired
+    private ComponentDAO cDAO;
+
     @Test
     public void getGoodTypesWithMoreThan5ModelsTest(){
-        Assert.assertEquals(sqlDAO.getGoodTypesWithMoreThan5Models(), Arrays.asList(new GoodType(1,"Input device"), new GoodType(2, "Component")));
+        System.out.println("sdfasdfasdf");
+        System.out.println(cDAO.getAll());
+        //Assert.assertEquals(sqlDAO.getGoodTypesWithMoreThan5Models(), Arrays.asList(new GoodType(1,"Input device"), new GoodType(2, "Component")));
     }
 
     @Test
